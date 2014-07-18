@@ -1,0 +1,348 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{48D8DA51-3F4B-4C92-99A8-3DF742069562}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>POS</RootNamespace>
+    <AssemblyName>POS</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <PublishUrl>E:\code\kantin Charitas\exefile\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>POS.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>F939753D5AF285B033F0734E49B270FF1CD46AFE</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>POS_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Context\PosContext.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\FrmGroupBarang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\FrmGroupBarang.Designer.cs">
+      <DependentUpon>FrmGroupBarang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\LoginUtama.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\LoginUtama.Designer.cs">
+      <DependentUpon>LoginUtama.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\master\FrmMasterItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\master\FrmMasterItem.Designer.cs">
+      <DependentUpon>FrmMasterItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\master\FrmMasterItemBarcode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\master\FrmMasterItemBarcode.Designer.cs">
+      <DependentUpon>FrmMasterItemBarcode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\MenuUtama.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\MenuUtama.Designer.cs">
+      <DependentUpon>MenuUtama.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\PosKasir\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\PosKasir\Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\PosKasir\POS_sales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\PosKasir\POS_sales.Designer.cs">
+      <DependentUpon>POS_sales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Func\VarGlobal.cs" />
+    <Compile Include="Migrations\201407161533470_updatedb.cs" />
+    <Compile Include="Migrations\201407161533470_updatedb.Designer.cs">
+      <DependentUpon>201407161533470_updatedb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407161539579_update-master.cs" />
+    <Compile Include="Migrations\201407161539579_update-master.Designer.cs">
+      <DependentUpon>201407161539579_update-master.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407161542283_nilaibarangMaster.cs" />
+    <Compile Include="Migrations\201407161542283_nilaibarangMaster.Designer.cs">
+      <DependentUpon>201407161542283_nilaibarangMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407161549541_kartu.cs" />
+    <Compile Include="Migrations\201407161549541_kartu.Designer.cs">
+      <DependentUpon>201407161549541_kartu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407161552169_kartu1.cs" />
+    <Compile Include="Migrations\201407161552169_kartu1.Designer.cs">
+      <DependentUpon>201407161552169_kartu1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407161603037_mutasi.cs" />
+    <Compile Include="Migrations\201407161603037_mutasi.Designer.cs">
+      <DependentUpon>201407161603037_mutasi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407161604104_tbl.cs" />
+    <Compile Include="Migrations\201407161604104_tbl.Designer.cs">
+      <DependentUpon>201407161604104_tbl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407161613421_pesanan.cs" />
+    <Compile Include="Migrations\201407161613421_pesanan.Designer.cs">
+      <DependentUpon>201407161613421_pesanan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407161619001_supp.cs" />
+    <Compile Include="Migrations\201407161619001_supp.Designer.cs">
+      <DependentUpon>201407161619001_supp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407161633075_terima.cs" />
+    <Compile Include="Migrations\201407161633075_terima.Designer.cs">
+      <DependentUpon>201407161633075_terima.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407161650132_adjust.cs" />
+    <Compile Include="Migrations\201407161650132_adjust.Designer.cs">
+      <DependentUpon>201407161650132_adjust.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407161651297_rentable.cs" />
+    <Compile Include="Migrations\201407161651297_rentable.Designer.cs">
+      <DependentUpon>201407161651297_rentable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407171529340_isiSatuan.cs" />
+    <Compile Include="Migrations\201407171529340_isiSatuan.Designer.cs">
+      <DependentUpon>201407171529340_isiSatuan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407171600445_lastupdate.cs" />
+    <Compile Include="Migrations\201407171600445_lastupdate.Designer.cs">
+      <DependentUpon>201407171600445_lastupdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="model\AdjustmentHdr.cs" />
+    <Compile Include="model\AdjustmentDtl.cs" />
+    <Compile Include="model\Barang.cs" />
+    <Compile Include="model\Barcode.cs" />
+    <Compile Include="model\GroupBarang.cs" />
+    <Compile Include="model\KartuStock.cs" />
+    <Compile Include="model\Kasir.cs" />
+    <Compile Include="model\Logger.cs" />
+    <Compile Include="model\Merk.cs" />
+    <Compile Include="model\MutasiDtl.cs" />
+    <Compile Include="model\MutasiHdr.cs" />
+    <Compile Include="model\Parameter.cs" />
+    <Compile Include="model\Lokasi.cs" />
+    <Compile Include="model\PesanDtl.cs" />
+    <Compile Include="model\PesanHdr.cs" />
+    <Compile Include="model\Satuan.cs" />
+    <Compile Include="model\Supplier.cs" />
+    <Compile Include="model\TerimaDtl.cs" />
+    <Compile Include="model\TerimaHdr.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\FrmGroupBarang.resx">
+      <DependentUpon>FrmGroupBarang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\LoginUtama.resx">
+      <DependentUpon>LoginUtama.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\master\FrmMasterItem.resx">
+      <DependentUpon>FrmMasterItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\master\FrmMasterItemBarcode.resx">
+      <DependentUpon>FrmMasterItemBarcode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\MenuUtama.resx">
+      <DependentUpon>MenuUtama.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\PosKasir\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\PosKasir\POS_sales.resx">
+      <DependentUpon>POS_sales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407161533470_updatedb.resx">
+      <DependentUpon>201407161533470_updatedb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407161539579_update-master.resx">
+      <DependentUpon>201407161539579_update-master.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407161542283_nilaibarangMaster.resx">
+      <DependentUpon>201407161542283_nilaibarangMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407161549541_kartu.resx">
+      <DependentUpon>201407161549541_kartu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407161552169_kartu1.resx">
+      <DependentUpon>201407161552169_kartu1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407161603037_mutasi.resx">
+      <DependentUpon>201407161603037_mutasi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407161604104_tbl.resx">
+      <DependentUpon>201407161604104_tbl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407161613421_pesanan.resx">
+      <DependentUpon>201407161613421_pesanan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407161619001_supp.resx">
+      <DependentUpon>201407161619001_supp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407161633075_terima.resx">
+      <DependentUpon>201407161633075_terima.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407161650132_adjust.resx">
+      <DependentUpon>201407161650132_adjust.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407161651297_rentable.resx">
+      <DependentUpon>201407161651297_rentable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407171529340_isiSatuan.resx">
+      <DependentUpon>201407171529340_isiSatuan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407171600445_lastupdate.resx">
+      <DependentUpon>201407171600445_lastupdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="POS_TemporaryKey.pfx" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.1 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\Resources\Shoppingcart-01.ico" />
+    <None Include="Resources\cross.jpg" />
+    <None Include="Resources\login.png" />
+    <None Include="Resources\key.jpg" />
+    <None Include="Resources\user_login.jpg" />
+    <None Include="Resources\pengiriman.jpg" />
+    <None Include="Resources\icon_shopcart.png" />
+    <None Include="Resources\terima PO1.png" />
+    <None Include="Resources\terima PO.png" />
+    <None Include="Resources\purchase-orders.png" />
+    <None Include="Resources\order-icon.png" />
+    <None Include="Resources\drop-box-icon2.png" />
+    <None Include="Resources\drop-box-icon1.png" />
+    <None Include="Resources\drop-box-icon.png" />
+    <None Include="Resources\Vista_login1.jpg" />
+    <None Include="Resources\Uiconstock-Shopping-Cart-Shoppingcart-01.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
