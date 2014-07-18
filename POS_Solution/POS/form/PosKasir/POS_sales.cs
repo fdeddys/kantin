@@ -1,4 +1,6 @@
-﻿using System;
+﻿using POS.Context;
+using POS.model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -37,6 +39,34 @@ namespace POS.form.PosKasir
         private void POS_sales_FormClosing(object sender, FormClosingEventArgs e)
         {
                         
+        }
+
+        private void TxtCari_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar.Equals((Char)13))
+            {
+
+                bool ketemu = false;
+                string cari = TxtCari.Text.Trim();
+                using (var context = new PosContext())
+                {
+                    Barcode barcode = (from b in context.BarcodeContext
+                                       where b.barcodeIsi == cari
+                                       select b).FirstOrDefault();
+                    if (barcode == null )
+                    {
+                        ketemu = false;
+                        MessageBox.Show("not ketemu");
+                    }
+                    else 
+                    {
+                        ketemu = true;
+                        MessageBox.Show("ketemu");
+                    }
+                }
+                
+                
+            }
         }
     }
 }

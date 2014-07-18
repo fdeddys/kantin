@@ -60,8 +60,9 @@ namespace POS
                     barangBaru.SatuanKecil = satuanBaru;
                     barangBaru.SatuanBesar = satuanBaru;
                     barangBaru.isStock = true;
+                    barangBaru.isi = 1;
                     db.BarangContext.Add(barangBaru);
-                    db.SaveChanges();
+                    //db.SaveChanges();
 
                 }
             //    var group1 = new GroupBarang();
@@ -82,8 +83,8 @@ namespace POS
             //Application.Run(new frmMasterBarang());
             //Application.Run(new FrmGroupBarang());
             //Application.Run(new FrmMasterItem());
-            //Application.Run(new Login());
-            Application.Run(new MenuUtama());
+            Application.Run(new Login());
+            //Application.Run(new MenuUtama());
 
             
         }

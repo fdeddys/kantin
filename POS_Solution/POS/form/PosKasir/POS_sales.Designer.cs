@@ -40,6 +40,7 @@
             this.LblNoFaktur = new System.Windows.Forms.Label();
             this.LblGrandTotal = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
@@ -51,7 +52,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.TxtJumlah = new System.Windows.Forms.TextBox();
             this.LblKode = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.panId.SuspendLayout();
@@ -181,6 +181,14 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Total Belanja";
             // 
+            // label2
+            // 
+            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.label2.Location = new System.Drawing.Point(40, 17);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(306, 34);
+            this.label2.TabIndex = 27;
+            // 
             // label8
             // 
             this.label8.BackColor = System.Drawing.Color.White;
@@ -233,6 +241,7 @@
             this.TxtCari.Name = "TxtCari";
             this.TxtCari.Size = new System.Drawing.Size(264, 20);
             this.TxtCari.TabIndex = 21;
+            this.TxtCari.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtCari_KeyPress);
             // 
             // label6
             // 
@@ -282,14 +291,6 @@
             this.LblKode.Size = new System.Drawing.Size(90, 16);
             this.LblKode.TabIndex = 27;
             this.LblKode.Text = "kode";
-            // 
-            // label2
-            // 
-            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label2.Location = new System.Drawing.Point(40, 17);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(306, 34);
-            this.label2.TabIndex = 27;
             // 
             // label9
             // 
