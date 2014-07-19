@@ -34,7 +34,6 @@
             this.lblJAM = new System.Windows.Forms.Label();
             this.lblTanggal = new System.Windows.Forms.Label();
             this.lblPOS = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.LblNoFaktur = new System.Windows.Forms.Label();
@@ -51,13 +50,17 @@
             this.LblNamaBarang = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.TxtJumlah = new System.Windows.Forms.TextBox();
-            this.LblKode = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.lblHarga = new System.Windows.Forms.Label();
+            this.lblSatuan = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panId.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panId
@@ -116,16 +119,6 @@
             this.lblPOS.Text = "POS";
             this.lblPOS.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.White;
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox1.Location = new System.Drawing.Point(6, 5);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(500, 174);
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            // 
             // timer1
             // 
             this.timer1.Enabled = true;
@@ -160,7 +153,7 @@
             // LblGrandTotal
             // 
             this.LblGrandTotal.BackColor = System.Drawing.Color.White;
-            this.LblGrandTotal.Font = new System.Drawing.Font("Times New Roman", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblGrandTotal.Font = new System.Drawing.Font("Times New Roman", 32.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblGrandTotal.ForeColor = System.Drawing.Color.Blue;
             this.LblGrandTotal.Location = new System.Drawing.Point(0, 100);
             this.LblGrandTotal.Name = "LblGrandTotal";
@@ -222,91 +215,142 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(1013, 20);
             this.label4.TabIndex = 19;
-            this.label4.Text = "   F1 : Help - F2 : Total  -  F9 : Logout";
+            this.label4.Text = "   F1 : Help - F2 : Total  -  F3 : Cek Harga   -  F9 : Logout";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Maroon;
-            this.label5.Location = new System.Drawing.Point(13, 231);
+            this.label5.Location = new System.Drawing.Point(21, 231);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(95, 16);
+            this.label5.Size = new System.Drawing.Size(109, 18);
             this.label5.TabIndex = 20;
             this.label5.Text = "Kode / barcode";
             // 
             // TxtCari
             // 
+            this.TxtCari.BackColor = System.Drawing.Color.White;
+            this.TxtCari.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtCari.Location = new System.Drawing.Point(16, 252);
             this.TxtCari.Name = "TxtCari";
-            this.TxtCari.Size = new System.Drawing.Size(264, 20);
-            this.TxtCari.TabIndex = 21;
+            this.TxtCari.Size = new System.Drawing.Size(264, 26);
+            this.TxtCari.TabIndex = 0;
+            this.TxtCari.TextChanged += new System.EventHandler(this.TxtCari_TextChanged);
             this.TxtCari.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtCari_KeyPress);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.Maroon;
-            this.label6.Location = new System.Drawing.Point(293, 231);
+            this.label6.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Yellow;
+            this.label6.Location = new System.Drawing.Point(304, 231);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(48, 16);
+            this.label6.Size = new System.Drawing.Size(54, 18);
             this.label6.TabIndex = 22;
             this.label6.Text = "Barang";
             // 
             // LblNamaBarang
             // 
-            this.LblNamaBarang.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblNamaBarang.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblNamaBarang.ForeColor = System.Drawing.Color.Yellow;
             this.LblNamaBarang.Location = new System.Drawing.Point(293, 256);
             this.LblNamaBarang.Name = "LblNamaBarang";
-            this.LblNamaBarang.Size = new System.Drawing.Size(519, 16);
+            this.LblNamaBarang.Size = new System.Drawing.Size(319, 28);
             this.LblNamaBarang.TabIndex = 24;
             this.LblNamaBarang.Text = "Nama Barang 0000000000000000000------------";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Maroon;
             this.label7.Location = new System.Drawing.Point(930, 231);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(48, 16);
+            this.label7.Size = new System.Drawing.Size(53, 18);
             this.label7.TabIndex = 25;
             this.label7.Text = "Jumlah";
             // 
             // TxtJumlah
             // 
-            this.TxtJumlah.Location = new System.Drawing.Point(912, 253);
+            this.TxtJumlah.BackColor = System.Drawing.Color.White;
+            this.TxtJumlah.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtJumlah.Location = new System.Drawing.Point(882, 253);
             this.TxtJumlah.Name = "TxtJumlah";
-            this.TxtJumlah.Size = new System.Drawing.Size(84, 20);
-            this.TxtJumlah.TabIndex = 26;
-            // 
-            // LblKode
-            // 
-            this.LblKode.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblKode.ForeColor = System.Drawing.Color.MintCream;
-            this.LblKode.Location = new System.Drawing.Point(818, 256);
-            this.LblKode.Name = "LblKode";
-            this.LblKode.Size = new System.Drawing.Size(90, 16);
-            this.LblKode.TabIndex = 27;
-            this.LblKode.Text = "kode";
+            this.TxtJumlah.Size = new System.Drawing.Size(111, 26);
+            this.TxtJumlah.TabIndex = 1;
+            this.TxtJumlah.TextChanged += new System.EventHandler(this.TxtJumlah_TextChanged);
+            this.TxtJumlah.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtJumlah_KeyPress);
             // 
             // label9
             // 
             this.label9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label9.Location = new System.Drawing.Point(21, 256);
+            this.label9.Location = new System.Drawing.Point(21, 260);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(264, 20);
+            this.label9.Size = new System.Drawing.Size(264, 23);
             this.label9.TabIndex = 28;
             // 
             // label10
             // 
             this.label10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label10.Location = new System.Drawing.Point(916, 257);
+            this.label10.Location = new System.Drawing.Point(890, 257);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(84, 20);
+            this.label10.Size = new System.Drawing.Size(109, 27);
             this.label10.TabIndex = 29;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.Indigo;
+            this.label11.Location = new System.Drawing.Point(657, 231);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(47, 18);
+            this.label11.TabIndex = 30;
+            this.label11.Text = "Harga";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.LawnGreen;
+            this.label12.Location = new System.Drawing.Point(791, 231);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(53, 18);
+            this.label12.TabIndex = 31;
+            this.label12.Text = "Satuan";
+            // 
+            // lblHarga
+            // 
+            this.lblHarga.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHarga.ForeColor = System.Drawing.Color.Indigo;
+            this.lblHarga.Location = new System.Drawing.Point(628, 255);
+            this.lblHarga.Name = "lblHarga";
+            this.lblHarga.Size = new System.Drawing.Size(115, 28);
+            this.lblHarga.TabIndex = 32;
+            this.lblHarga.Text = "Rp 9,999,999,-";
+            this.lblHarga.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblSatuan
+            // 
+            this.lblSatuan.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSatuan.ForeColor = System.Drawing.Color.LawnGreen;
+            this.lblSatuan.Location = new System.Drawing.Point(759, 255);
+            this.lblSatuan.Name = "lblSatuan";
+            this.lblSatuan.Size = new System.Drawing.Size(115, 28);
+            this.lblSatuan.TabIndex = 33;
+            this.lblSatuan.Text = "pcs";
+            this.lblSatuan.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.White;
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBox1.Location = new System.Drawing.Point(6, 5);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(500, 174);
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
             // 
             // POS_sales
             // 
@@ -314,7 +358,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SteelBlue;
             this.ClientSize = new System.Drawing.Size(1008, 730);
-            this.Controls.Add(this.LblKode);
+            this.Controls.Add(this.lblSatuan);
+            this.Controls.Add(this.lblHarga);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.TxtJumlah);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.LblNamaBarang);
@@ -336,10 +383,10 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.POS_sales_FormClosing);
             this.Load += new System.EventHandler(this.POS_sales_Load);
             this.panId.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -367,10 +414,13 @@
         private System.Windows.Forms.Label LblNamaBarang;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox TxtJumlah;
-        private System.Windows.Forms.Label LblKode;
         private System.Windows.Forms.Label LblNoFaktur;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label lblHarga;
+        private System.Windows.Forms.Label lblSatuan;
     }
 }

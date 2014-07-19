@@ -189,6 +189,14 @@
     <Compile Include="Migrations\201407171600445_lastupdate.Designer.cs">
       <DependentUpon>201407171600445_lastupdate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201407181556304_penjualan.cs" />
+    <Compile Include="Migrations\201407181556304_penjualan.Designer.cs">
+      <DependentUpon>201407181556304_penjualan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407181610263_no faktur.cs" />
+    <Compile Include="Migrations\201407181610263_no faktur.Designer.cs">
+      <DependentUpon>201407181610263_no faktur.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="model\AdjustmentHdr.cs" />
     <Compile Include="model\AdjustmentDtl.cs" />
@@ -203,6 +211,8 @@
     <Compile Include="model\MutasiHdr.cs" />
     <Compile Include="model\Parameter.cs" />
     <Compile Include="model\Lokasi.cs" />
+    <Compile Include="model\PenjualanDtl.cs" />
+    <Compile Include="model\PenjualanHdr.cs" />
     <Compile Include="model\PesanDtl.cs" />
     <Compile Include="model\PesanHdr.cs" />
     <Compile Include="model\Satuan.cs" />
@@ -276,6 +286,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201407171600445_lastupdate.resx">
       <DependentUpon>201407171600445_lastupdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407181556304_penjualan.resx">
+      <DependentUpon>201407181556304_penjualan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407181610263_no faktur.resx">
+      <DependentUpon>201407181610263_no faktur.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -37,8 +37,11 @@ namespace POS.Context
         public DbSet<Supplier> SupplierContext { get; set; }
         public DbSet<TerimaHdr> TerimaHdrContext { get; set; }
         public DbSet<TerimaDtl> TerimaDtlContext { get; set; }
-        public DbSet<AdjustmentHdr> AdjustmentHdr { get; set; }
-        public DbSet<AdjustmentDtl> AdjustmentDtl { get; set; }
+        public DbSet<AdjustmentHdr> AdjustmentHdrContext { get; set; }
+        public DbSet<AdjustmentDtl> AdjustmentDtlContext { get; set; }
+        public DbSet<PenjualanHdr> PenjualanHdrContext { get; set; }
+        public DbSet<PenjualanDtl> PenjualanDtlContext { get; set; }
+
 
 
     }
