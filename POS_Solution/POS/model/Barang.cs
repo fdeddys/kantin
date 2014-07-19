@@ -47,5 +47,7 @@ namespace POS.model
 
         public DateTime lastUpdate { get; set; }
 
+        public string kodeBarang { get; set; }
+
     }
 }

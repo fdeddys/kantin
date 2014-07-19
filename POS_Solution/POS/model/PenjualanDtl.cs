@@ -14,6 +14,7 @@ namespace POS.model
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int idPenjualanDtl { get; set; }
+        public virtual PenjualanHdr penjualanHdr { get; set; }
         public Barang barang { get; set; }
         public double jumlah { get; set; }
         public double harga { get; set; }

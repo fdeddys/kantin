@@ -1,21 +1,58 @@
-﻿using System;
+﻿using POS.Context;
+using POS.Func;
+using POS.model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace POS.form.PosKasir
 {
     public partial class Login : Form
     {
+        Lokasi lokasi = null;
         public Login()
         {
             InitializeComponent();
             //animForm();
+            
+            try
+            {
+                string pathExe = AppDomain.CurrentDomain.BaseDirectory.ToString();
+                //MessageBox.Show(pathExe);
+                IniFile iniFile = new IniFile(pathExe + "\\" + "setting.ini");                
+                string hasil = iniFile.IniReadValue("config","lokasi");
+                if (hasil != "")
+                {
+                    lblPOS.Text = hasil;
+                    Int32 hasilInt = Int32.Parse(hasil);
+
+                    using (var context = new PosContext())
+                    {
+                        lokasi = (from l in context.LokasiContext
+                                         where l.idLokasi == hasilInt
+                                         select l).FirstOrDefault();
+                        if (lokasi != null)
+                        {
+                            lblPOS.Text = lokasi.NamaLokasi.Trim();
+                        }
+                    };
+                }                
+            }
+            catch (Exception e)
+            {                
+                //throw e;
+                //MessageBox.Show(e.InnerException.ToString());
+            }
+            
+
         }
 
         private void animForm(){
@@ -46,10 +83,27 @@ namespace POS.form.PosKasir
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            POS_sales PosSales = new POS_sales();
-            Func.VarGlobal.UserNameLogin = txtUserId.Text.Trim();
-            PosSales.Show();
-            //this.Hide();
+            bool loginValid = false;
+            Kasir kasir = null;
+            using (var context = new PosContext())
+            {
+                kasir = (from k in context.KasirContext
+                               where k.KodeKasir == txtUserId.Text.Trim()
+                               select k).FirstOrDefault();
+                if (kasir != null)
+                {
+                    loginValid = true;
+                }
+            }
+            if (loginValid) {
+                Func.VarGlobal.UserNameLogin = kasir.NamaKasir;
+                Func.VarGlobal.idKasir = kasir.IdKasir ;
+                Func.VarGlobal.idLokasi = lokasi.idLokasi;
+                POS_sales PosSales = new POS_sales();
+                PosSales.Show();
+                //this.Hide();
+            }
+            
         }
     }
 }

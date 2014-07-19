@@ -236,7 +236,6 @@
             this.TxtCari.Name = "TxtCari";
             this.TxtCari.Size = new System.Drawing.Size(264, 26);
             this.TxtCari.TabIndex = 0;
-            this.TxtCari.TextChanged += new System.EventHandler(this.TxtCari_TextChanged);
             this.TxtCari.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtCari_KeyPress);
             // 
             // label6
@@ -279,7 +278,6 @@
             this.TxtJumlah.Name = "TxtJumlah";
             this.TxtJumlah.Size = new System.Drawing.Size(111, 26);
             this.TxtJumlah.TabIndex = 1;
-            this.TxtJumlah.TextChanged += new System.EventHandler(this.TxtJumlah_TextChanged);
             this.TxtJumlah.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtJumlah_KeyPress);
             // 
             // label9
@@ -380,7 +378,6 @@
             this.Name = "POS_sales";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "POS_sales";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.POS_sales_FormClosing);
             this.Load += new System.EventHandler(this.POS_sales_Load);
             this.panId.ResumeLayout(false);
             this.panel1.ResumeLayout(false);

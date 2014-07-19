@@ -15,11 +15,34 @@ namespace POS.form.PosKasir
     public partial class POS_sales : Form
     {
         private Barang barang = null;
-        
+        private bool autoSalesQty = false;
+        private PenjualanHdr penjualanHdr = null;
+        private Kasir kasir = null;
+        private Lokasi lokasi = null;
+
         public POS_sales()
         {
             InitializeComponent();
-            
+            using (var context = new PosContext())
+            {
+                
+                
+                Parameter parameter = (from p in context.ParameterContext
+                                  select p).FirstOrDefault();
+                if (parameter != null)
+                {
+                    autoSalesQty = parameter.autoQtySales;
+                }
+                
+                kasir = (from k in context.KasirContext
+                         where k.IdKasir == Func.VarGlobal.idKasir
+                         select k).FirstOrDefault();
+                
+                lokasi = (from l in context.LokasiContext
+                          where l.idLokasi == Func.VarGlobal.idLokasi
+                          select l).FirstOrDefault();
+
+            };
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -31,17 +54,12 @@ namespace POS.form.PosKasir
         private void POS_sales_Load(object sender, EventArgs e)
         {
             lblUser.Text = Func.VarGlobal.UserNameLogin;
-            this.TopMost = true;
+            //this.TopMost = true;
         }
 
         private void label2_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void POS_sales_FormClosing(object sender, FormClosingEventArgs e)
-        {
-                        
         }
 
         private void TxtCari_KeyPress(object sender, KeyPressEventArgs e)
@@ -51,7 +69,7 @@ namespace POS.form.PosKasir
             {   
                 if (TxtCari.Text.Equals(""))
                 {
-
+                    // tidak ada action saat txt cari = kosong
                 }
                 else
                 {
@@ -69,25 +87,54 @@ namespace POS.form.PosKasir
                         {
                             barang = new Barang();
                             barang = barcode.Barang;
-                            LblNamaBarang.Text = "[ " + barang.namaBarang.Trim() + " ]";
-                            lblHarga.Text = " Rp. " + barang.hargaJual.ToString("#,###");
-                            lblSatuan.Text = barang.SatuanKecil.NamaSatuan.Trim();
-                        
-                            TxtJumlah.Focus();                        
+                            if (autoSalesQty)
+                            {
+                                if (penjualanHdr == null)
+                                {
+                                    LblNoFaktur.Text = generateNoFaktur(DateTime.Now);
+                                    penjualanHdr = new PenjualanHdr();
+                                    penjualanHdr.isBayar = false;
+                                    penjualanHdr.kasir = kasir;
+                                    penjualanHdr.lastUpdate = DateTime.Now;
+                                    penjualanHdr.lokasi = lokasi;
+                                    penjualanHdr.noFaktur = LblNoFaktur.Text.Trim();
+                                    penjualanHdr.batal = false;
+                                    penjualanHdr.tanggalJual = DateTime.Now;
+                                    penjualanHdr.totalBelanja = 0;
+                                    context.PenjualanHdrContext.Add(penjualanHdr);
+                                    context.SaveChanges();
+                                }                                
+
+                                // save penjualan dtl
+                                PenjualanDtl penjualanDtl = new PenjualanDtl();
+                                penjualanDtl.barang = barang;
+                                penjualanDtl.harga = barang.hargaJual;
+                                penjualanDtl.jumlah = 1;
+                                penjualanDtl.penjualanHdr = penjualanHdr;                                
+                                context.PenjualanDtlContext.Add(penjualanDtl);
+                                context.SaveChanges();
+
+                                // update total belanja di HDR
+                                penjualanHdr.totalBelanja = penjualanHdr.totalBelanja + (barang.hargaJual);                                
+                                context.PenjualanHdrContext.Find(penjualanHdr.idPenjualanHd);
+                                context.SaveChanges();
+                                LblGrandTotal.Text = " Rp. " + penjualanHdr.totalBelanja.ToString("#,###");
+
+                                // kosongkan text cari
+                                barang = null;
+                                TxtCari.Text = "";
+                            }
+                            else
+                            {                               
+                                LblNamaBarang.Text = "[ " + barang.namaBarang.Trim() + " ]";
+                                lblHarga.Text = " Rp. " + barang.hargaJual.ToString("#,###");
+                                lblSatuan.Text = barang.SatuanKecil.NamaSatuan.Trim();
+                                TxtJumlah.Focus();                        
+                            }                                                        
                         }
                     } // End Using ( )
                 }                                                
             }
-        }
-
-        private void TxtCari_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TxtJumlah_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void TxtJumlah_KeyPress(object sender, KeyPressEventArgs e)
@@ -141,6 +188,41 @@ namespace POS.form.PosKasir
                 TxtCari.Focus();
                 TxtCari.SelectAll();
             };
+        }
+
+        private string  generateNoFaktur(DateTime tgl)
+        {
+            string hasil="";
+            using (var context = new PosContext())
+            {
+                PenjualanHdr penjualanHdr = (from p in context.PenjualanHdrContext
+                                             where (p.tanggalJual.Month == tgl.Month && p.tanggalJual.Year == tgl.Year)
+                                             orderby p.idPenjualanHd descending
+                                             select p).FirstOrDefault();
+                if (penjualanHdr == null)
+                {
+                    hasil = "F" +  DateTime.Now.ToString("yyMM") + "00001";
+                }
+                else
+                {
+                    string noFakturTerakhir = penjualanHdr.noFaktur.Substring(5,5);
+                    Int32 noFakturTerakhirInt = Int32.Parse( noFakturTerakhir) +1;
+                    hasil = "F" + DateTime.Now.ToString("yyMM") + ("0000" + noFakturTerakhirInt).Right(5);
+                }                
+            }
+            return hasil;
+        }
+    
+    }
+
+    static class Extensions
+    {
+        /// <summary>
+        /// Get substring of specified number of characters on the right.
+        /// </summary>
+        public static string Right(this string value, int length)
+        {
+            return value.Substring(value.Length - length);
         }
     }
 }

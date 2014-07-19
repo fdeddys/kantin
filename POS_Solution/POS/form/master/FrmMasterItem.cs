@@ -213,7 +213,15 @@ namespace POS.form.master
                 barang.lastUpdate = DateTime.Now.ToUniversalTime();
                 context.BarangContext.Add(barang);
                 context.SaveChanges();
+
+                // create kode barang 1234567 dari identity yang di buat
+                // update ke table barang
                 txtKode.Text = ("0000000" + barang.idBarang.ToString().Trim()).Right(7);
+                barang.kodeBarang = txtKode.Text.Trim();
+                context.BarangContext.Find(barang.idBarang);
+                context.SaveChanges();
+
+
                 btnKondisiAwal(true);
 
                 if (dataBaru.Equals(true))

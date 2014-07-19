@@ -16,5 +16,8 @@ namespace POS.model
         public int IdParameter { get; set; }
         [MaxLength(3) ]
         public string KodeGudangMasuk { get; set; }
+
+        // automatic isi qty = 1 saat penjualan kasir 
+        public bool autoQtySales { get; set; } 
     }
 }

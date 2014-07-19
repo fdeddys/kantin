@@ -132,70 +132,19 @@
     <Compile Include="form\PosKasir\POS_sales.Designer.cs">
       <DependentUpon>POS_sales.cs</DependentUpon>
     </Compile>
+    <Compile Include="Func\IniFile.cs" />
     <Compile Include="Func\VarGlobal.cs" />
-    <Compile Include="Migrations\201407161533470_updatedb.cs" />
-    <Compile Include="Migrations\201407161533470_updatedb.Designer.cs">
-      <DependentUpon>201407161533470_updatedb.cs</DependentUpon>
+    <Compile Include="Migrations\201407190417433_barang tambah kodeBarang.cs" />
+    <Compile Include="Migrations\201407190417433_barang tambah kodeBarang.Designer.cs">
+      <DependentUpon>201407190417433_barang tambah kodeBarang.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201407161539579_update-master.cs" />
-    <Compile Include="Migrations\201407161539579_update-master.Designer.cs">
-      <DependentUpon>201407161539579_update-master.cs</DependentUpon>
+    <Compile Include="Migrations\201407190429208_autoQty.cs" />
+    <Compile Include="Migrations\201407190429208_autoQty.Designer.cs">
+      <DependentUpon>201407190429208_autoQty.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201407161542283_nilaibarangMaster.cs" />
-    <Compile Include="Migrations\201407161542283_nilaibarangMaster.Designer.cs">
-      <DependentUpon>201407161542283_nilaibarangMaster.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201407161549541_kartu.cs" />
-    <Compile Include="Migrations\201407161549541_kartu.Designer.cs">
-      <DependentUpon>201407161549541_kartu.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201407161552169_kartu1.cs" />
-    <Compile Include="Migrations\201407161552169_kartu1.Designer.cs">
-      <DependentUpon>201407161552169_kartu1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201407161603037_mutasi.cs" />
-    <Compile Include="Migrations\201407161603037_mutasi.Designer.cs">
-      <DependentUpon>201407161603037_mutasi.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201407161604104_tbl.cs" />
-    <Compile Include="Migrations\201407161604104_tbl.Designer.cs">
-      <DependentUpon>201407161604104_tbl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201407161613421_pesanan.cs" />
-    <Compile Include="Migrations\201407161613421_pesanan.Designer.cs">
-      <DependentUpon>201407161613421_pesanan.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201407161619001_supp.cs" />
-    <Compile Include="Migrations\201407161619001_supp.Designer.cs">
-      <DependentUpon>201407161619001_supp.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201407161633075_terima.cs" />
-    <Compile Include="Migrations\201407161633075_terima.Designer.cs">
-      <DependentUpon>201407161633075_terima.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201407161650132_adjust.cs" />
-    <Compile Include="Migrations\201407161650132_adjust.Designer.cs">
-      <DependentUpon>201407161650132_adjust.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201407161651297_rentable.cs" />
-    <Compile Include="Migrations\201407161651297_rentable.Designer.cs">
-      <DependentUpon>201407161651297_rentable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201407171529340_isiSatuan.cs" />
-    <Compile Include="Migrations\201407171529340_isiSatuan.Designer.cs">
-      <DependentUpon>201407171529340_isiSatuan.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201407171600445_lastupdate.cs" />
-    <Compile Include="Migrations\201407171600445_lastupdate.Designer.cs">
-      <DependentUpon>201407171600445_lastupdate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201407181556304_penjualan.cs" />
-    <Compile Include="Migrations\201407181556304_penjualan.Designer.cs">
-      <DependentUpon>201407181556304_penjualan.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201407181610263_no faktur.cs" />
-    <Compile Include="Migrations\201407181610263_no faktur.Designer.cs">
-      <DependentUpon>201407181610263_no faktur.cs</DependentUpon>
+    <Compile Include="Migrations\201407190636140_penjualandtl - penjualanHdr.cs" />
+    <Compile Include="Migrations\201407190636140_penjualandtl - penjualanHdr.Designer.cs">
+      <DependentUpon>201407190636140_penjualandtl - penjualanHdr.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="model\AdjustmentHdr.cs" />
@@ -245,53 +194,14 @@
     <EmbeddedResource Include="form\PosKasir\POS_sales.resx">
       <DependentUpon>POS_sales.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407161533470_updatedb.resx">
-      <DependentUpon>201407161533470_updatedb.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201407190417433_barang tambah kodeBarang.resx">
+      <DependentUpon>201407190417433_barang tambah kodeBarang.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407161539579_update-master.resx">
-      <DependentUpon>201407161539579_update-master.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201407190429208_autoQty.resx">
+      <DependentUpon>201407190429208_autoQty.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407161542283_nilaibarangMaster.resx">
-      <DependentUpon>201407161542283_nilaibarangMaster.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407161549541_kartu.resx">
-      <DependentUpon>201407161549541_kartu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407161552169_kartu1.resx">
-      <DependentUpon>201407161552169_kartu1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407161603037_mutasi.resx">
-      <DependentUpon>201407161603037_mutasi.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407161604104_tbl.resx">
-      <DependentUpon>201407161604104_tbl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407161613421_pesanan.resx">
-      <DependentUpon>201407161613421_pesanan.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407161619001_supp.resx">
-      <DependentUpon>201407161619001_supp.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407161633075_terima.resx">
-      <DependentUpon>201407161633075_terima.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407161650132_adjust.resx">
-      <DependentUpon>201407161650132_adjust.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407161651297_rentable.resx">
-      <DependentUpon>201407161651297_rentable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407171529340_isiSatuan.resx">
-      <DependentUpon>201407171529340_isiSatuan.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407171600445_lastupdate.resx">
-      <DependentUpon>201407171600445_lastupdate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407181556304_penjualan.resx">
-      <DependentUpon>201407181556304_penjualan.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407181610263_no faktur.resx">
-      <DependentUpon>201407181610263_no faktur.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201407190636140_penjualandtl - penjualanHdr.resx">
+      <DependentUpon>201407190636140_penjualandtl - penjualanHdr.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
