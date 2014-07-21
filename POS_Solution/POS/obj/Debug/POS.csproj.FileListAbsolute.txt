@@ -60,6 +60,6 @@ E:\code\kantin Charitas\kantin\POS_Solution\POS\obj\Debug\POS.Properties.Resourc
 E:\code\kantin Charitas\kantin\POS_Solution\POS\obj\Debug\POS.csproj.GenerateResource.Cache
 E:\code\kantin Charitas\kantin\POS_Solution\POS\obj\Debug\POS.exe.manifest
 E:\code\kantin Charitas\kantin\POS_Solution\POS\obj\Debug\POS.application
-E:\code\kantin Charitas\kantin\POS_Solution\POS\obj\Debug\POS.Migrations.barangtambahkodeBarang.resources
-E:\code\kantin Charitas\kantin\POS_Solution\POS\obj\Debug\POS.Migrations.autoQty.resources
-E:\code\kantin Charitas\kantin\POS_Solution\POS\obj\Debug\POS.Migrations.penjualandtlpenjualanHdr.resources
+E:\code\kantin Charitas\kantin\POS_Solution\POS\obj\Debug\POS.Migrations.updateAll.resources
+E:\code\kantin Charitas\kantin\POS_Solution\POS\obj\Debug\POS.Migrations.jumlahBayar.resources
+E:\code\kantin Charitas\kantin\POS_Solution\POS\obj\Debug\POS.Migrations.batalDetil.resources

@@ -192,7 +192,7 @@ namespace POS.form.master
                 {
                     kodeCari = Int32.Parse( txtKode.Text);
                     barang = (from b in context.BarangContext
-                             where b.idBarang == kodeCari
+                             where b.BarangID == kodeCari
                              select b).FirstOrDefault();
                 };
                 
@@ -216,9 +216,9 @@ namespace POS.form.master
 
                 // create kode barang 1234567 dari identity yang di buat
                 // update ke table barang
-                txtKode.Text = ("0000000" + barang.idBarang.ToString().Trim()).Right(7);
+                txtKode.Text = ("0000000" + barang.BarangID.ToString().Trim()).Right(7);
                 barang.kodeBarang = txtKode.Text.Trim();
-                context.BarangContext.Find(barang.idBarang);
+                context.BarangContext.Find(barang.BarangID);
                 context.SaveChanges();
 
 
@@ -245,7 +245,7 @@ namespace POS.form.master
             using(var context = new PosContext() )
             {
                 var ListBarang = from b in context.BarangContext
-                                 select new { b.idBarang, b.namaBarang, b.SatuanKecil.NamaSatuan , b.isi };
+                                 select new { b.BarangID, b.namaBarang, b.SatuanKecil.NamaSatuan , b.isi };
                 dGVBarang.DataSource = ListBarang.ToList();
             }
         }

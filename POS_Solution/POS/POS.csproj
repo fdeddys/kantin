@@ -134,17 +134,17 @@
     </Compile>
     <Compile Include="Func\IniFile.cs" />
     <Compile Include="Func\VarGlobal.cs" />
-    <Compile Include="Migrations\201407190417433_barang tambah kodeBarang.cs" />
-    <Compile Include="Migrations\201407190417433_barang tambah kodeBarang.Designer.cs">
-      <DependentUpon>201407190417433_barang tambah kodeBarang.cs</DependentUpon>
+    <Compile Include="Migrations\201407200605546_updateAll.cs" />
+    <Compile Include="Migrations\201407200605546_updateAll.Designer.cs">
+      <DependentUpon>201407200605546_updateAll.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201407190429208_autoQty.cs" />
-    <Compile Include="Migrations\201407190429208_autoQty.Designer.cs">
-      <DependentUpon>201407190429208_autoQty.cs</DependentUpon>
+    <Compile Include="Migrations\201407201158347_jumlahBayar.cs" />
+    <Compile Include="Migrations\201407201158347_jumlahBayar.Designer.cs">
+      <DependentUpon>201407201158347_jumlahBayar.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201407190636140_penjualandtl - penjualanHdr.cs" />
-    <Compile Include="Migrations\201407190636140_penjualandtl - penjualanHdr.Designer.cs">
-      <DependentUpon>201407190636140_penjualandtl - penjualanHdr.cs</DependentUpon>
+    <Compile Include="Migrations\201407201246230_batalDetil.cs" />
+    <Compile Include="Migrations\201407201246230_batalDetil.Designer.cs">
+      <DependentUpon>201407201246230_batalDetil.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="model\AdjustmentHdr.cs" />
@@ -194,14 +194,14 @@
     <EmbeddedResource Include="form\PosKasir\POS_sales.resx">
       <DependentUpon>POS_sales.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407190417433_barang tambah kodeBarang.resx">
-      <DependentUpon>201407190417433_barang tambah kodeBarang.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201407200605546_updateAll.resx">
+      <DependentUpon>201407200605546_updateAll.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407190429208_autoQty.resx">
-      <DependentUpon>201407190429208_autoQty.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201407201158347_jumlahBayar.resx">
+      <DependentUpon>201407201158347_jumlahBayar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407190636140_penjualandtl - penjualanHdr.resx">
-      <DependentUpon>201407190636140_penjualandtl - penjualanHdr.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201407201246230_batalDetil.resx">
+      <DependentUpon>201407201246230_batalDetil.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

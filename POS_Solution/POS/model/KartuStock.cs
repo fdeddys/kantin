@@ -15,7 +15,8 @@ namespace POS.model
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int idKartuStock { get; set; }
 
-        public virtual Barang idBarang { get; set; }
+        public int BarangID { get; set; }
+        public virtual Barang Barang { get; set; }
 
         public DateTime tanggal { get; set; }
 
@@ -29,7 +30,9 @@ namespace POS.model
 
         public DateTime lastUpdate { get; set; }
 
-        public virtual Lokasi lokasi { get; set; }
+        public int LokasiID { get; set; }
+        public virtual Lokasi Lokasi { get; set; }
+
 
         public string idTransaksi { get; set; }
 

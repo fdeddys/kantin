@@ -17,9 +17,11 @@ namespace POS.model
 
         public DateTime tanggal { get; set; }
 
-        public virtual Lokasi lokasiAsal { get; set; }
+        public int LokasiAsalID { get; set; }
+        public int LokasiTujuanID { get; set; }
+        //public virtual Lokasi LokasiAsal { get; set; }
         
-        public virtual Lokasi LokasiTujuan { get; set; }
+        //public virtual Lokasi LokasiTujuan { get; set; }
 
         public bool approve { get; set; }
 

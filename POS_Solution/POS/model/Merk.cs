@@ -18,7 +18,8 @@ namespace POS.model
         [MaxLength(50)]
         public string namaMerk { get; set; }
 
-        public virtual List<Barang> Barangs { get; set; }
+        //public int BarangID { get; set; }
+        //public virtual ICollection<Barang> Barang { get; set; }
 
 
     }

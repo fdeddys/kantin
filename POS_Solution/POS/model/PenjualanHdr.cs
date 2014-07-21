@@ -13,18 +13,32 @@ namespace POS.model
     {
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-        public int idPenjualanHd { get; set; }
+        public int PenjualanHdrID { get; set; }
+
         public DateTime tanggalJual { get; set; }
-        public virtual Kasir kasir { get; set; }
-        public virtual Lokasi lokasi { get; set; }
+
+        public int KasirID { get; set; }
+        public virtual Kasir Kasir { get; set; }
+        
+        public int LokasiID { get; set; }
+        public virtual Lokasi Lokasi { get; set; }
+        
         public double totalBelanja { get; set; }
         public bool isBayar { get; set; }
         public DateTime lastUpdate { get; set; }
         public bool batal { get; set; }
+        public double jumlahBayar { get; set; }
 
         // FYYmm99999
         [MaxLength(12)]
         public string noFaktur { get; set; }
+
+        public virtual ICollection<PenjualanDtl> PenjualanDtl { get; set; }
+ 
+        //public PenjualanHdr()
+        //{
+        //    penjualanDtl = new List<PenjualanDtl>();
+        //}               
     }
 }
 

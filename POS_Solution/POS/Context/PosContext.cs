@@ -40,7 +40,7 @@ namespace POS.Context
         public DbSet<AdjustmentHdr> AdjustmentHdrContext { get; set; }
         public DbSet<AdjustmentDtl> AdjustmentDtlContext { get; set; }
         public DbSet<PenjualanHdr> PenjualanHdrContext { get; set; }
-        public DbSet<PenjualanDtl> PenjualanDtlContext { get; set; }
+        public DbSet <PenjualanDtl> PenjualanDtlContext { get; set; }
 
 
 

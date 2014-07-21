@@ -27,7 +27,7 @@ namespace POS.form.PosKasir
             {
                 string pathExe = AppDomain.CurrentDomain.BaseDirectory.ToString();
                 //MessageBox.Show(pathExe);
-                IniFile iniFile = new IniFile(pathExe + "\\" + "setting.ini");                
+                IniFile iniFile = new IniFile(pathExe +  "setting.ini");                
                 string hasil = iniFile.IniReadValue("config","lokasi");
                 if (hasil != "")
                 {
@@ -37,7 +37,7 @@ namespace POS.form.PosKasir
                     using (var context = new PosContext())
                     {
                         lokasi = (from l in context.LokasiContext
-                                         where l.idLokasi == hasilInt
+                                         where l.LokasiID == hasilInt
                                          select l).FirstOrDefault();
                         if (lokasi != null)
                         {
@@ -49,7 +49,7 @@ namespace POS.form.PosKasir
             catch (Exception e)
             {                
                 //throw e;
-                //MessageBox.Show(e.InnerException.ToString());
+                MessageBox.Show(e.Message.ToString());
             }
             
 
@@ -94,11 +94,15 @@ namespace POS.form.PosKasir
                 {
                     loginValid = true;
                 }
+                else
+                {
+                    MessageBox.Show("User not found", "kasir is null", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
             }
             if (loginValid) {
                 Func.VarGlobal.UserNameLogin = kasir.NamaKasir;
-                Func.VarGlobal.idKasir = kasir.IdKasir ;
-                Func.VarGlobal.idLokasi = lokasi.idLokasi;
+                Func.VarGlobal.idKasir = kasir.KasirID;
+                Func.VarGlobal.idLokasi = lokasi.LokasiID;
                 POS_sales PosSales = new POS_sales();
                 PosSales.Show();
                 //this.Hide();

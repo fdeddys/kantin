@@ -13,7 +13,7 @@ namespace POS.model
     {
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity) ]
-        public int IdKasir { get; set; }
+        public int KasirID { get; set; }
         
         [MaxLength(20)]
         public string KodeKasir { get; set; }

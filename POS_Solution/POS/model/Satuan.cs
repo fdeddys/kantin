@@ -18,12 +18,12 @@ namespace POS.model
         [MaxLength(50)]
         public String NamaSatuan { get; set; }
 
-        public virtual List<Barang> Barangs { get; set; }
+        //public virtual List<Barang> Barangs { get; set; }
 
-        public Satuan()
-        {
-            this.Barangs = new List<Barang>();
-        }
+        //public Satuan()
+        //{
+        //    this.Barangs = new List<Barang>();
+        //}
 
     }
 }

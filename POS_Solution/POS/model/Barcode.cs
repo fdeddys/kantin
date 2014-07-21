@@ -15,6 +15,7 @@ namespace POS.model
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int BarcodeId { get; set; }
 
+        public int BarangID { get; set; }
         public virtual Barang Barang { get; set; }
 
         [MaxLength(100)]

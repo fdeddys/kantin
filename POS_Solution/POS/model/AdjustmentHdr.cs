@@ -21,7 +21,9 @@ namespace POS.model
         [MaxLength(100)]
         public string catatan { get; set; }
 
-        public virtual Lokasi lokasi{ get; set; }
+        public int LokasiID { get; set; }
+
+        public virtual Lokasi Lokasi{ get; set; }
 
         public bool approve { get; set; }
 

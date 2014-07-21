@@ -18,11 +18,12 @@ namespace POS.model
         [MaxLength(50)]
         public string namaGroup { get; set; }
 
-        public virtual List<Barang> Barangs { get; set; }
+        public int BarangID { get; set; }
+        public virtual List<Barang> Barang { get; set; }
 
         public GroupBarang()
         {
-            this.Barangs = new List<Barang>();
+            this.Barang = new List<Barang>();
         }
 
     }

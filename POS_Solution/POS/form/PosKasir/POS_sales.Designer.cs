@@ -41,7 +41,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -56,10 +55,26 @@
             this.label12 = new System.Windows.Forms.Label();
             this.lblHarga = new System.Windows.Forms.Label();
             this.lblSatuan = new System.Windows.Forms.Label();
+            this.dgvListBarang = new System.Windows.Forms.DataGridView();
+            this.panelBayar = new System.Windows.Forms.Panel();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.txtJumlahBayar = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.lblBayarTotalKembali = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.lblBayarTotalBelanja = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label22 = new System.Windows.Forms.Label();
             this.panId.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvListBarang)).BeginInit();
+            this.panelBayar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -70,7 +85,7 @@
             this.panId.Controls.Add(this.lblJAM);
             this.panId.Controls.Add(this.lblTanggal);
             this.panId.Controls.Add(this.lblPOS);
-            this.panId.Location = new System.Drawing.Point(-6, 692);
+            this.panId.Location = new System.Drawing.Point(-6, 686);
             this.panId.Name = "panId";
             this.panId.Size = new System.Drawing.Size(1017, 36);
             this.panId.TabIndex = 0;
@@ -152,9 +167,9 @@
             // 
             // LblGrandTotal
             // 
-            this.LblGrandTotal.BackColor = System.Drawing.Color.White;
-            this.LblGrandTotal.Font = new System.Drawing.Font("Times New Roman", 32.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblGrandTotal.ForeColor = System.Drawing.Color.Blue;
+            this.LblGrandTotal.BackColor = System.Drawing.Color.Black;
+            this.LblGrandTotal.Font = new System.Drawing.Font("Courier New", 32.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblGrandTotal.ForeColor = System.Drawing.Color.Lime;
             this.LblGrandTotal.Location = new System.Drawing.Point(0, 100);
             this.LblGrandTotal.Name = "LblGrandTotal";
             this.LblGrandTotal.Size = new System.Drawing.Size(366, 62);
@@ -190,14 +205,6 @@
             this.label8.Size = new System.Drawing.Size(1017, 35);
             this.label8.TabIndex = 16;
             // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(10, 306);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(989, 376);
-            this.dataGridView1.TabIndex = 17;
-            // 
             // label3
             // 
             this.label3.BackColor = System.Drawing.Color.White;
@@ -215,7 +222,8 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(1013, 20);
             this.label4.TabIndex = 19;
-            this.label4.Text = "   F1 : Help - F2 : Total  -  F3 : Cek Harga   -  F9 : Logout";
+            this.label4.Text = "   F1 : Cari Barang  -  F2 : Bayar - F3 : Cek Harga  -  F4 :  Ubah Data  -  F9 : " +
+    "Logout  -  F10 : Print Struk terakhir";
             // 
             // label5
             // 
@@ -237,6 +245,7 @@
             this.TxtCari.Size = new System.Drawing.Size(264, 26);
             this.TxtCari.TabIndex = 0;
             this.TxtCari.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtCari_KeyPress);
+            this.TxtCari.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtCari_KeyUp);
             // 
             // label6
             // 
@@ -273,6 +282,7 @@
             // TxtJumlah
             // 
             this.TxtJumlah.BackColor = System.Drawing.Color.White;
+            this.TxtJumlah.Enabled = false;
             this.TxtJumlah.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtJumlah.Location = new System.Drawing.Point(882, 253);
             this.TxtJumlah.Name = "TxtJumlah";
@@ -340,6 +350,177 @@
             this.lblSatuan.Text = "pcs";
             this.lblSatuan.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // dgvListBarang
+            // 
+            this.dgvListBarang.AllowUserToAddRows = false;
+            this.dgvListBarang.AllowUserToDeleteRows = false;
+            this.dgvListBarang.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvListBarang.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgvListBarang.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvListBarang.Location = new System.Drawing.Point(0, 302);
+            this.dgvListBarang.Name = "dgvListBarang";
+            this.dgvListBarang.ReadOnly = true;
+            this.dgvListBarang.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvListBarang.Size = new System.Drawing.Size(1010, 353);
+            this.dgvListBarang.TabIndex = 34;
+            this.dgvListBarang.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dgvListBarang_KeyPress);
+            this.dgvListBarang.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dgvListBarang_KeyUp);
+            // 
+            // panelBayar
+            // 
+            this.panelBayar.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.panelBayar.Controls.Add(this.label21);
+            this.panelBayar.Controls.Add(this.label20);
+            this.panelBayar.Controls.Add(this.label15);
+            this.panelBayar.Controls.Add(this.label14);
+            this.panelBayar.Controls.Add(this.label19);
+            this.panelBayar.Controls.Add(this.label18);
+            this.panelBayar.Controls.Add(this.txtJumlahBayar);
+            this.panelBayar.Controls.Add(this.label17);
+            this.panelBayar.Controls.Add(this.lblBayarTotalKembali);
+            this.panelBayar.Controls.Add(this.label16);
+            this.panelBayar.Controls.Add(this.lblBayarTotalBelanja);
+            this.panelBayar.Controls.Add(this.label13);
+            this.panelBayar.Location = new System.Drawing.Point(263, 144);
+            this.panelBayar.Name = "panelBayar";
+            this.panelBayar.Size = new System.Drawing.Size(559, 313);
+            this.panelBayar.TabIndex = 35;
+            this.panelBayar.Visible = false;
+            // 
+            // label21
+            // 
+            this.label21.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.ForeColor = System.Drawing.Color.GhostWhite;
+            this.label21.Location = new System.Drawing.Point(216, 224);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(39, 36);
+            this.label21.TabIndex = 26;
+            this.label21.Text = ":";
+            this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label20
+            // 
+            this.label20.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.ForeColor = System.Drawing.Color.GhostWhite;
+            this.label20.Location = new System.Drawing.Point(216, 164);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(39, 36);
+            this.label20.TabIndex = 25;
+            this.label20.Text = ":";
+            this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label15
+            // 
+            this.label15.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.Color.GhostWhite;
+            this.label15.Location = new System.Drawing.Point(216, 104);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(39, 36);
+            this.label15.TabIndex = 24;
+            this.label15.Text = ":";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label14
+            // 
+            this.label14.BackColor = System.Drawing.Color.Gainsboro;
+            this.label14.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.Color.DarkRed;
+            this.label14.Location = new System.Drawing.Point(0, 283);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(559, 20);
+            this.label14.TabIndex = 23;
+            this.label14.Text = "   ENTER : Pembayaran   ESC : Batal Bayar";
+            // 
+            // label19
+            // 
+            this.label19.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.label19.Font = new System.Drawing.Font("Times New Roman", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.label19.Location = new System.Drawing.Point(0, 18);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(559, 48);
+            this.label19.TabIndex = 22;
+            this.label19.Text = "-- Pembayaran --";
+            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.ForeColor = System.Drawing.Color.GhostWhite;
+            this.label18.Location = new System.Drawing.Point(11, 224);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(134, 36);
+            this.label18.TabIndex = 21;
+            this.label18.Text = "Kembali";
+            // 
+            // txtJumlahBayar
+            // 
+            this.txtJumlahBayar.BackColor = System.Drawing.Color.White;
+            this.txtJumlahBayar.Font = new System.Drawing.Font("Times New Roman", 33F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtJumlahBayar.Location = new System.Drawing.Point(257, 150);
+            this.txtJumlahBayar.Name = "txtJumlahBayar";
+            this.txtJumlahBayar.Size = new System.Drawing.Size(295, 58);
+            this.txtJumlahBayar.TabIndex = 20;
+            this.txtJumlahBayar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtJumlahBayar_KeyPress);
+            this.txtJumlahBayar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtJumlahBayar_KeyUp);
+            // 
+            // label17
+            // 
+            this.label17.BackColor = System.Drawing.Color.Gainsboro;
+            this.label17.Location = new System.Drawing.Point(0, 66);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(559, 10);
+            this.label17.TabIndex = 19;
+            // 
+            // lblBayarTotalKembali
+            // 
+            this.lblBayarTotalKembali.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.lblBayarTotalKembali.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblBayarTotalKembali.Font = new System.Drawing.Font("Times New Roman", 32.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBayarTotalKembali.ForeColor = System.Drawing.Color.Lime;
+            this.lblBayarTotalKembali.Location = new System.Drawing.Point(257, 212);
+            this.lblBayarTotalKembali.Name = "lblBayarTotalKembali";
+            this.lblBayarTotalKembali.Size = new System.Drawing.Size(295, 53);
+            this.lblBayarTotalKembali.TabIndex = 4;
+            this.lblBayarTotalKembali.Text = "Rp 9,999,999";
+            this.lblBayarTotalKembali.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.ForeColor = System.Drawing.Color.GhostWhite;
+            this.label16.Location = new System.Drawing.Point(11, 164);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(98, 36);
+            this.label16.TabIndex = 3;
+            this.label16.Text = "Bayar";
+            // 
+            // lblBayarTotalBelanja
+            // 
+            this.lblBayarTotalBelanja.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.lblBayarTotalBelanja.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblBayarTotalBelanja.Font = new System.Drawing.Font("Times New Roman", 32.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBayarTotalBelanja.ForeColor = System.Drawing.Color.Lime;
+            this.lblBayarTotalBelanja.Location = new System.Drawing.Point(257, 87);
+            this.lblBayarTotalBelanja.Name = "lblBayarTotalBelanja";
+            this.lblBayarTotalBelanja.Size = new System.Drawing.Size(295, 62);
+            this.lblBayarTotalBelanja.TabIndex = 2;
+            this.lblBayarTotalBelanja.Text = "Rp 9,999,999";
+            this.lblBayarTotalBelanja.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.GhostWhite;
+            this.label13.Location = new System.Drawing.Point(11, 104);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(199, 36);
+            this.label13.TabIndex = 1;
+            this.label13.Text = "Total Belanja";
+            // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.White;
@@ -350,12 +531,27 @@
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
+            // label22
+            // 
+            this.label22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.label22.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.ForeColor = System.Drawing.Color.DarkRed;
+            this.label22.Location = new System.Drawing.Point(-1, 658);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(1013, 20);
+            this.label22.TabIndex = 36;
+            this.label22.Text = "   DEL : hapus data  -  ESC  :  Kembali ke kode/barcode  -  SPACE BAR :  ubah jum" +
+    "lah barang";
+            // 
             // POS_sales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SteelBlue;
             this.ClientSize = new System.Drawing.Size(1008, 730);
+            this.Controls.Add(this.label22);
+            this.Controls.Add(this.panelBayar);
+            this.Controls.Add(this.dgvListBarang);
             this.Controls.Add(this.lblSatuan);
             this.Controls.Add(this.lblHarga);
             this.Controls.Add(this.label12);
@@ -368,7 +564,6 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox1);
@@ -382,7 +577,9 @@
             this.panId.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvListBarang)).EndInit();
+            this.panelBayar.ResumeLayout(false);
+            this.panelBayar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -402,7 +599,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label LblGrandTotal;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
@@ -419,5 +615,20 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label lblHarga;
         private System.Windows.Forms.Label lblSatuan;
+        private System.Windows.Forms.DataGridView dgvListBarang;
+        private System.Windows.Forms.Panel panelBayar;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox txtJumlahBayar;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label lblBayarTotalKembali;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label lblBayarTotalBelanja;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label22;
     }
 }

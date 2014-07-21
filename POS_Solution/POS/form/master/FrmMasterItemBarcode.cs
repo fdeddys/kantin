@@ -28,7 +28,7 @@ namespace POS.form.master
             using (var context = new PosContext())
             {
                 var barcode = (from b in context.BarcodeContext
-                               where b.Barang.idBarang == idBarang
+                               where b.Barang.BarangID == idBarang
                                select new {b.BarcodeId, b.barcodeIsi } );
 
                 lstBarcode.DataSource = barcode.ToList();

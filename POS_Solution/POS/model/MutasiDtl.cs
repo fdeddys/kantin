@@ -17,7 +17,8 @@ namespace POS.model
 
         public virtual MutasiHdr mutasiHdr { get; set; }
 
-        public virtual Barang barang{ get; set; }
+        public int BarangID { get; set; }
+        public virtual Barang Barang{ get; set; }
 
         public double qty { get; set; }
 

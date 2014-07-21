@@ -24,60 +24,75 @@ namespace POS
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            using (var db = new PosContext())
-            {
+            //using (var db = new PosContext())
+            //{
 
-                Satuan satuanBaru = new Satuan();
-                var satuan = (from s in db.SatuanContext
-                              select s).FirstOrDefault();
-                if(satuan==(null))
-                {                    
-                    satuanBaru.NamaSatuan="pc";                                            
-                    db.SatuanContext.Add(satuanBaru);
-                    db.SaveChanges();
-                }
+            //    Satuan satuanBaru = new Satuan();
+            //    var satuan = (from s in db.SatuanContext
+            //                  select s).FirstOrDefault();
+            //    if(satuan==(null))
+            //    {                    
+            //        satuanBaru.NamaSatuan="pc";                                            
+            //        db.SatuanContext.Add(satuanBaru);
+            //        db.SaveChanges();                    
+            //    }
 
-
-                GroupBarang groupBarangBaru = new GroupBarang();
-                var groupBarang = (from g in db.GroupBarangContext
-                                   select g).FirstOrDefault();
-                if(groupBarang == null)
-                {                    
-                    groupBarangBaru.namaGroup = "ATK";
-                    db.GroupBarangContext.Add(groupBarangBaru);
-                    db.SaveChanges();
-                }
+            //    Merk merkBaru = new Merk();
+            //    merkBaru.namaMerk = "pilot";
+            //    db.MerkContext.Add(merkBaru);
+            //    db.SaveChanges();
 
 
-                var barang = (from b in db.BarangContext
-                              select b).FirstOrDefault();
-                if(barang == null)
-                {
-                    Barang barangBaru = new Barang();
-                    barangBaru.GroupBarang = groupBarangBaru;
-                    barangBaru.hargaJual = 0;
-                    barangBaru.namaBarang = "tes1";
-                    barangBaru.SatuanKecil = satuanBaru;
-                    barangBaru.SatuanBesar = satuanBaru;
-                    barangBaru.isStock = true;
-                    barangBaru.isi = 1;
-                    db.BarangContext.Add(barangBaru);
-                    //db.SaveChanges();
 
-                }
-            //    var group1 = new GroupBarang();
-            //    group1.namaGroup = "tes";
+            //    Kasir kasirBaru = new Kasir();
+            //    kasirBaru.KodeKasir = "deddy ";
+            //    kasirBaru.NamaKasir = "F deddy";
+            //    kasirBaru.Aktif = true;
+            //    db.KasirContext.Add(kasirBaru);
+            //    db.SaveChanges();
 
-            //    var nasi = new Barang();
-            //    nasi.hargaJual = 1000;
-            //    nasi.namaBarang = "nasi";
-            //    nasi.satuan = "piring";
-            //    nasi.stock = true;
-            //    nasi.GroupBarang = group1;
+            //    GroupBarang groupBarangBaru = new GroupBarang();
+            //    var groupBarang = (from g in db.GroupBarangContext
+            //                       select g).FirstOrDefault();
+            //    if(groupBarang == null)
+            //    {                    
+            //        groupBarangBaru.namaGroup = "ATK";
+            //        db.GroupBarangContext.Add(groupBarangBaru);
+            //        db.SaveChanges();
+            //    }
 
-            //    db.BarangContext.Add(nasi);
-            //    db.SaveChanges();    
-            }
+
+            //    var barang = (from b in db.BarangContext
+            //                  select b).FirstOrDefault();
+            //    if(barang == null)
+            //    {
+            //        Barang barangBaru = new Barang();
+            //        barangBaru.GroupBarang = groupBarangBaru;
+            //        barangBaru.hargaJual = 0;
+            //        barangBaru.namaBarang = "tes1";
+            //        barangBaru.SatuanKecil = satuanBaru;
+            //        barangBaru.SatuanBesar = satuanBaru;
+            //        barangBaru.isStock = true;
+            //        barangBaru.isi = 1;
+            //        barangBaru.kodeBarang = "0000001";
+            //        barangBaru.lastUpdate = DateTime.Now;
+            //        db.BarangContext.Add(barangBaru);
+            //        //db.SaveChanges();
+
+            //    }
+            ////    var group1 = new GroupBarang();
+            ////    group1.namaGroup = "tes";
+
+            ////    var nasi = new Barang();
+            ////    nasi.hargaJual = 1000;
+            ////    nasi.namaBarang = "nasi";
+            ////    nasi.satuan = "piring";
+            ////    nasi.stock = true;
+            ////    nasi.GroupBarang = group1;
+
+            ////    db.BarangContext.Add(nasi);
+            ////    db.SaveChanges();    
+            //}
 
             
             //Application.Run(new frmMasterBarang());
