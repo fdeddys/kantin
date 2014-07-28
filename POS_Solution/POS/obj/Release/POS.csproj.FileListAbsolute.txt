@@ -21,5 +21,6 @@ E:\code\kantin Charitas\kantin\POS_Solution\POS\obj\Release\POS.exe.manifest
 E:\code\kantin Charitas\kantin\POS_Solution\POS\obj\Release\POS.application
 E:\code\kantin Charitas\kantin\POS_Solution\POS\obj\Release\POS.exe
 E:\code\kantin Charitas\kantin\POS_Solution\POS\obj\Release\POS.pdb
+E:\code\kantin Charitas\kantin\POS_Solution\POS\obj\Release\POS.form.PosKasir.FormHelpBarang.resources
+E:\code\kantin Charitas\kantin\POS_Solution\POS\obj\Release\POS.csprojResolveAssemblyReference.cache
 E:\code\kantin Charitas\kantin\POS_Solution\POS\obj\Release\POS.Migrations.all.resources
-E:\code\kantin Charitas\kantin\POS_Solution\POS\obj\Release\POS.Migrations.all1.resources

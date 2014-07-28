@@ -77,7 +77,7 @@
             this.txtUserId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtUserId.Location = new System.Drawing.Point(115, 186);
             this.txtUserId.Name = "txtUserId";
-            this.txtUserId.Size = new System.Drawing.Size(69, 26);
+            this.txtUserId.Size = new System.Drawing.Size(168, 26);
             this.txtUserId.TabIndex = 7;
             this.txtUserId.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUserId_KeyPress);
             // 
@@ -106,8 +106,9 @@
             // txtPassword
             // 
             this.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtPassword.Location = new System.Drawing.Point(115, 213);
+            this.txtPassword.Location = new System.Drawing.Point(115, 214);
             this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(168, 26);
             this.txtPassword.TabIndex = 9;
             // 
@@ -191,14 +192,14 @@
             // label9
             // 
             this.label9.BackColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(-6, 252);
+            this.label9.Location = new System.Drawing.Point(-6, 250);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(332, 64);
+            this.label9.Size = new System.Drawing.Size(314, 64);
             this.label9.TabIndex = 16;
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(151, 260);
+            this.btnExit.Location = new System.Drawing.Point(151, 258);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(139, 50);
             this.btnExit.TabIndex = 18;
@@ -209,7 +210,7 @@
             // btnLogin
             // 
             this.btnLogin.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLogin.Location = new System.Drawing.Point(12, 260);
+            this.btnLogin.Location = new System.Drawing.Point(12, 258);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(139, 50);
             this.btnLogin.TabIndex = 17;
@@ -232,7 +233,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SteelBlue;
-            this.ClientSize = new System.Drawing.Size(306, 322);
+            this.ClientSize = new System.Drawing.Size(306, 326);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnLogin);

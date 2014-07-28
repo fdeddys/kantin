@@ -12,8 +12,8 @@ namespace POS.model
     public class Merk
     {
         [Key]
-        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-        public int IdMerk { get; set; }
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]        
+        public int MerkID { get; set; }
 
         [MaxLength(50)]
         public string namaMerk { get; set; }
@@ -21,6 +21,8 @@ namespace POS.model
         //public int BarangID { get; set; }
         //public virtual ICollection<Barang> Barang { get; set; }
 
+
+        public bool hapus { get; set; }
 
     }
 }

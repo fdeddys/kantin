@@ -85,7 +85,7 @@ namespace POS.form
                             groupBarang.namaGroup = txtNamaGroup.Text.Trim();
                             Context.GroupBarangContext.Add(groupBarang);
                             Context.SaveChanges();
-                            txtKodeGroup.Text = groupBarang.idGroup.ToString();
+                            txtKodeGroup.Text = groupBarang.GroupBarangID.ToString();
                         }
                         else
                         {
@@ -93,7 +93,7 @@ namespace POS.form
                             Int32 id;                            
                             Int32.TryParse( txtKodeGroup.Text, out id);
                             var editGroup = (from g in Context.GroupBarangContext
-                                             where g.idGroup == id
+                                             where g.GroupBarangID == id
                                              select g).FirstOrDefault();
                             editGroup.namaGroup = txtNamaGroup.Text.Trim();
                             Context.SaveChanges();
@@ -117,7 +117,7 @@ namespace POS.form
             using (var context = new PosContext())
             {
                 var listGroup = (from g in context.GroupBarangContext
-                                 select new { g.idGroup, g.namaGroup });
+                                 select new { idGroup = g.GroupBarangID, g.namaGroup });
                 dgvGroupBarang.DataSource = listGroup.ToList();                
             }
         }
@@ -148,9 +148,9 @@ namespace POS.form
                 using (var context = new PosContext())
                 {
                     var groupBarang = (from g in context.GroupBarangContext
-                                       where g.idGroup == idCari
+                                       where g.GroupBarangID == idCari
                                        select g).FirstOrDefault();
-                    txtKodeGroup.Text = groupBarang.idGroup.ToString();
+                    txtKodeGroup.Text = groupBarang.GroupBarangID.ToString();
                     txtNamaGroup.Text = groupBarang.namaGroup.ToString();
                 }
             }

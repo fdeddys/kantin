@@ -120,6 +120,12 @@
     <Compile Include="form\MenuUtama.Designer.cs">
       <DependentUpon>MenuUtama.cs</DependentUpon>
     </Compile>
+    <Compile Include="form\PosKasir\FormHelpBarang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\PosKasir\FormHelpBarang.Designer.cs">
+      <DependentUpon>FormHelpBarang.cs</DependentUpon>
+    </Compile>
     <Compile Include="form\PosKasir\Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,26 +140,23 @@
     </Compile>
     <Compile Include="Func\IniFile.cs" />
     <Compile Include="Func\VarGlobal.cs" />
-    <Compile Include="Migrations\201407200605546_updateAll.cs" />
-    <Compile Include="Migrations\201407200605546_updateAll.Designer.cs">
-      <DependentUpon>201407200605546_updateAll.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201407201158347_jumlahBayar.cs" />
-    <Compile Include="Migrations\201407201158347_jumlahBayar.Designer.cs">
-      <DependentUpon>201407201158347_jumlahBayar.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201407201246230_batalDetil.cs" />
-    <Compile Include="Migrations\201407201246230_batalDetil.Designer.cs">
-      <DependentUpon>201407201246230_batalDetil.cs</DependentUpon>
+    <Compile Include="Migrations\201407280745080_all.cs" />
+    <Compile Include="Migrations\201407280745080_all.Designer.cs">
+      <DependentUpon>201407280745080_all.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="model\AdjustmentHdr.cs" />
     <Compile Include="model\AdjustmentDtl.cs" />
     <Compile Include="model\Barang.cs" />
+    <Compile Include="model\BarangHistory.cs" />
     <Compile Include="model\Barcode.cs" />
+    <Compile Include="model\DaftarMenu.cs" />
     <Compile Include="model\GroupBarang.cs" />
     <Compile Include="model\KartuStock.cs" />
     <Compile Include="model\Kasir.cs" />
+    <Compile Include="model\KasirLogin.cs" />
+    <Compile Include="model\LastNo.cs" />
+    <Compile Include="model\LastNoTrans.cs" />
     <Compile Include="model\Logger.cs" />
     <Compile Include="model\Merk.cs" />
     <Compile Include="model\MutasiDtl.cs" />
@@ -165,9 +168,11 @@
     <Compile Include="model\PesanDtl.cs" />
     <Compile Include="model\PesanHdr.cs" />
     <Compile Include="model\Satuan.cs" />
+    <Compile Include="model\Stock.cs" />
     <Compile Include="model\Supplier.cs" />
     <Compile Include="model\TerimaDtl.cs" />
     <Compile Include="model\TerimaHdr.cs" />
+    <Compile Include="model\UserAksesMenu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -188,20 +193,17 @@
     <EmbeddedResource Include="form\MenuUtama.resx">
       <DependentUpon>MenuUtama.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="form\PosKasir\FormHelpBarang.resx">
+      <DependentUpon>FormHelpBarang.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="form\PosKasir\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="form\PosKasir\POS_sales.resx">
       <DependentUpon>POS_sales.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407200605546_updateAll.resx">
-      <DependentUpon>201407200605546_updateAll.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407201158347_jumlahBayar.resx">
-      <DependentUpon>201407201158347_jumlahBayar.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407201246230_batalDetil.resx">
-      <DependentUpon>201407201246230_batalDetil.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201407280745080_all.resx">
+      <DependentUpon>201407280745080_all.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

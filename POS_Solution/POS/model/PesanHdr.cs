@@ -29,5 +29,8 @@ namespace POS.model
 
         public DateTime lastUpdate { get; set; }
 
+        [MaxLength(11)]
+        public string noPO { get; set; }
+
     }
 }

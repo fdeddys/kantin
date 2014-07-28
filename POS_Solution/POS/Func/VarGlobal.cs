@@ -9,6 +9,7 @@ namespace POS.Func
     public class VarGlobal
     {
         public static string UserNameLogin = string.Empty;
+        public static string namaLokasi = string.Empty;
         public static Int32 idKasir=0;
         public static Int32 idLokasi=0;
         public static string IdBarang = string.Empty;

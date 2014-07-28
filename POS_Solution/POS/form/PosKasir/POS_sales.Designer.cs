@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panId = new System.Windows.Forms.Panel();
+            this.lblCekHarga = new System.Windows.Forms.Label();
             this.lblUser = new System.Windows.Forms.Label();
             this.lblJAM = new System.Windows.Forms.Label();
             this.lblTanggal = new System.Windows.Forms.Label();
@@ -69,18 +70,27 @@
             this.label16 = new System.Windows.Forms.Label();
             this.lblBayarTotalBelanja = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
+            this.labelKeteranganBawah = new System.Windows.Forms.Label();
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.lblSaldoAwal = new System.Windows.Forms.Label();
+            this.btnOpenShift = new System.Windows.Forms.Button();
+            this.btnBatalOpenShift = new System.Windows.Forms.Button();
+            this.panelOpenShift = new System.Windows.Forms.Panel();
             this.panId.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListBarang)).BeginInit();
             this.panelBayar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panelOpenShift.SuspendLayout();
             this.SuspendLayout();
             // 
             // panId
             // 
             this.panId.BackColor = System.Drawing.Color.White;
+            this.panId.Controls.Add(this.lblCekHarga);
             this.panId.Controls.Add(this.lblUser);
             this.panId.Controls.Add(this.lblJAM);
             this.panId.Controls.Add(this.lblTanggal);
@@ -90,22 +100,37 @@
             this.panId.Size = new System.Drawing.Size(1017, 36);
             this.panId.TabIndex = 0;
             // 
+            // lblCekHarga
+            // 
+            this.lblCekHarga.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblCekHarga.Font = new System.Drawing.Font("Book Antiqua", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCekHarga.ForeColor = System.Drawing.Color.DarkGreen;
+            this.lblCekHarga.Location = new System.Drawing.Point(563, 5);
+            this.lblCekHarga.Name = "lblCekHarga";
+            this.lblCekHarga.Size = new System.Drawing.Size(206, 27);
+            this.lblCekHarga.TabIndex = 37;
+            this.lblCekHarga.Text = "Cek Harga";
+            this.lblCekHarga.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblCekHarga.Visible = false;
+            // 
             // lblUser
             // 
-            this.lblUser.Font = new System.Drawing.Font("Book Antiqua", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUser.ForeColor = System.Drawing.Color.SteelBlue;
-            this.lblUser.Location = new System.Drawing.Point(758, 5);
+            this.lblUser.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblUser.Font = new System.Drawing.Font("Book Antiqua", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUser.ForeColor = System.Drawing.Color.Magenta;
+            this.lblUser.Location = new System.Drawing.Point(775, 5);
             this.lblUser.Name = "lblUser";
-            this.lblUser.Size = new System.Drawing.Size(241, 27);
+            this.lblUser.Size = new System.Drawing.Size(230, 27);
             this.lblUser.TabIndex = 21;
             this.lblUser.Text = "user";
             this.lblUser.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblJAM
             // 
+            this.lblJAM.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblJAM.Font = new System.Drawing.Font("Book Antiqua", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblJAM.ForeColor = System.Drawing.Color.SteelBlue;
-            this.lblJAM.Location = new System.Drawing.Point(531, 5);
+            this.lblJAM.Location = new System.Drawing.Point(395, 5);
             this.lblJAM.Name = "lblJAM";
             this.lblJAM.Size = new System.Drawing.Size(162, 27);
             this.lblJAM.TabIndex = 18;
@@ -114,9 +139,10 @@
             // 
             // lblTanggal
             // 
-            this.lblTanggal.Font = new System.Drawing.Font("Book Antiqua", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTanggal.ForeColor = System.Drawing.Color.SteelBlue;
-            this.lblTanggal.Location = new System.Drawing.Point(274, 5);
+            this.lblTanggal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblTanggal.Font = new System.Drawing.Font("Book Antiqua", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTanggal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblTanggal.Location = new System.Drawing.Point(227, 5);
             this.lblTanggal.Name = "lblTanggal";
             this.lblTanggal.Size = new System.Drawing.Size(162, 27);
             this.lblTanggal.TabIndex = 17;
@@ -125,11 +151,12 @@
             // 
             // lblPOS
             // 
-            this.lblPOS.Font = new System.Drawing.Font("Book Antiqua", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPOS.ForeColor = System.Drawing.Color.SteelBlue;
-            this.lblPOS.Location = new System.Drawing.Point(24, 5);
+            this.lblPOS.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblPOS.Font = new System.Drawing.Font("Book Antiqua", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPOS.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.lblPOS.Location = new System.Drawing.Point(12, 5);
             this.lblPOS.Name = "lblPOS";
-            this.lblPOS.Size = new System.Drawing.Size(162, 27);
+            this.lblPOS.Size = new System.Drawing.Size(209, 27);
             this.lblPOS.TabIndex = 16;
             this.lblPOS.Text = "POS";
             this.lblPOS.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -191,7 +218,7 @@
             // 
             // label2
             // 
-            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.label2.BackColor = System.Drawing.Color.Gray;
             this.label2.Location = new System.Drawing.Point(40, 17);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(306, 34);
@@ -222,8 +249,8 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(1013, 20);
             this.label4.TabIndex = 19;
-            this.label4.Text = "   F1 : Cari Barang  -  F2 : Bayar - F3 : Cek Harga  -  F4 :  Ubah Data  -  F9 : " +
-    "Logout  -  F10 : Print Struk terakhir";
+            this.label4.Text = "   F1 : Cari Barang  -  F2 : Bayar - F3 : Cek Harga  -  F4 :  Ubah Jumlah/hapus  " +
+    "-  F9 : Logout  -  F10 : Print Struk terakhir  -  F12 : Open Shift  ";
             // 
             // label5
             // 
@@ -356,6 +383,7 @@
             this.dgvListBarang.AllowUserToDeleteRows = false;
             this.dgvListBarang.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvListBarang.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgvListBarang.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.dgvListBarang.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvListBarang.Location = new System.Drawing.Point(0, 302);
             this.dgvListBarang.Name = "dgvListBarang";
@@ -363,8 +391,11 @@
             this.dgvListBarang.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvListBarang.Size = new System.Drawing.Size(1010, 353);
             this.dgvListBarang.TabIndex = 34;
+            this.dgvListBarang.Click += new System.EventHandler(this.dgvListBarang_Click);
+            this.dgvListBarang.Enter += new System.EventHandler(this.dgvListBarang_Enter);
             this.dgvListBarang.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dgvListBarang_KeyPress);
             this.dgvListBarang.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dgvListBarang_KeyUp);
+            this.dgvListBarang.Leave += new System.EventHandler(this.dgvListBarang_Leave);
             // 
             // panelBayar
             // 
@@ -381,7 +412,7 @@
             this.panelBayar.Controls.Add(this.label16);
             this.panelBayar.Controls.Add(this.lblBayarTotalBelanja);
             this.panelBayar.Controls.Add(this.label13);
-            this.panelBayar.Location = new System.Drawing.Point(263, 144);
+            this.panelBayar.Location = new System.Drawing.Point(238, 84);
             this.panelBayar.Name = "panelBayar";
             this.panelBayar.Size = new System.Drawing.Size(559, 313);
             this.panelBayar.TabIndex = 35;
@@ -436,9 +467,9 @@
             this.label19.BackColor = System.Drawing.Color.CornflowerBlue;
             this.label19.Font = new System.Drawing.Font("Times New Roman", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.label19.Location = new System.Drawing.Point(0, 18);
+            this.label19.Location = new System.Drawing.Point(17, 0);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(559, 48);
+            this.label19.Size = new System.Drawing.Size(527, 66);
             this.label19.TabIndex = 22;
             this.label19.Text = "-- Pembayaran --";
             this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -475,7 +506,7 @@
             // 
             // lblBayarTotalKembali
             // 
-            this.lblBayarTotalKembali.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.lblBayarTotalKembali.BackColor = System.Drawing.Color.Black;
             this.lblBayarTotalKembali.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblBayarTotalKembali.Font = new System.Drawing.Font("Times New Roman", 32.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBayarTotalKembali.ForeColor = System.Drawing.Color.Lime;
@@ -499,7 +530,7 @@
             // 
             // lblBayarTotalBelanja
             // 
-            this.lblBayarTotalBelanja.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.lblBayarTotalBelanja.BackColor = System.Drawing.Color.Black;
             this.lblBayarTotalBelanja.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblBayarTotalBelanja.Font = new System.Drawing.Font("Times New Roman", 32.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBayarTotalBelanja.ForeColor = System.Drawing.Color.Lime;
@@ -521,6 +552,24 @@
             this.label13.TabIndex = 1;
             this.label13.Text = "Total Belanja";
             // 
+            // labelKeteranganBawah
+            // 
+            this.labelKeteranganBawah.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.labelKeteranganBawah.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelKeteranganBawah.ForeColor = System.Drawing.Color.DarkRed;
+            this.labelKeteranganBawah.Location = new System.Drawing.Point(-1, 658);
+            this.labelKeteranganBawah.Name = "labelKeteranganBawah";
+            this.labelKeteranganBawah.Size = new System.Drawing.Size(1013, 20);
+            this.labelKeteranganBawah.TabIndex = 36;
+            this.labelKeteranganBawah.Text = "   DEL : hapus data  -  ESC  :  Kembali ke kode/barcode  -  SPACE BAR :  ubah jum" +
+    "lah barang";
+            this.labelKeteranganBawah.Visible = false;
+            // 
+            // timer2
+            // 
+            this.timer2.Interval = 300;
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.White;
@@ -531,17 +580,81 @@
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
-            // label22
+            // label23
             // 
-            this.label22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.label22.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.ForeColor = System.Drawing.Color.DarkRed;
-            this.label22.Location = new System.Drawing.Point(-1, 658);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(1013, 20);
-            this.label22.TabIndex = 36;
-            this.label22.Text = "   DEL : hapus data  -  ESC  :  Kembali ke kode/barcode  -  SPACE BAR :  ubah jum" +
-    "lah barang";
+            this.label23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.label23.Font = new System.Drawing.Font("Times New Roman", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.label23.Location = new System.Drawing.Point(3, 22);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(487, 66);
+            this.label23.TabIndex = 23;
+            this.label23.Text = "-- Open Shift --";
+            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.ForeColor = System.Drawing.Color.Green;
+            this.label25.Location = new System.Drawing.Point(20, 114);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(145, 26);
+            this.label25.TabIndex = 24;
+            this.label25.Text = "Saldo Awal  :";
+            // 
+            // lblSaldoAwal
+            // 
+            this.lblSaldoAwal.BackColor = System.Drawing.Color.Black;
+            this.lblSaldoAwal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblSaldoAwal.Font = new System.Drawing.Font("Courier New", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSaldoAwal.ForeColor = System.Drawing.Color.Lime;
+            this.lblSaldoAwal.Location = new System.Drawing.Point(171, 93);
+            this.lblSaldoAwal.Name = "lblSaldoAwal";
+            this.lblSaldoAwal.Size = new System.Drawing.Size(295, 62);
+            this.lblSaldoAwal.TabIndex = 25;
+            this.lblSaldoAwal.Text = "Rp 9,999,999";
+            this.lblSaldoAwal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnOpenShift
+            // 
+            this.btnOpenShift.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOpenShift.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btnOpenShift.Location = new System.Drawing.Point(25, 163);
+            this.btnOpenShift.Name = "btnOpenShift";
+            this.btnOpenShift.Size = new System.Drawing.Size(212, 61);
+            this.btnOpenShift.TabIndex = 26;
+            this.btnOpenShift.Text = "Open Shift";
+            this.btnOpenShift.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnOpenShift.UseVisualStyleBackColor = true;
+            this.btnOpenShift.Click += new System.EventHandler(this.btnOpenShift_Click);
+            // 
+            // btnBatalOpenShift
+            // 
+            this.btnBatalOpenShift.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBatalOpenShift.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btnBatalOpenShift.Location = new System.Drawing.Point(240, 162);
+            this.btnBatalOpenShift.Name = "btnBatalOpenShift";
+            this.btnBatalOpenShift.Size = new System.Drawing.Size(212, 61);
+            this.btnBatalOpenShift.TabIndex = 27;
+            this.btnBatalOpenShift.Text = "Batal";
+            this.btnBatalOpenShift.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnBatalOpenShift.UseVisualStyleBackColor = true;
+            this.btnBatalOpenShift.Click += new System.EventHandler(this.btnBatalOpenShift_Click);
+            // 
+            // panelOpenShift
+            // 
+            this.panelOpenShift.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.panelOpenShift.Controls.Add(this.btnBatalOpenShift);
+            this.panelOpenShift.Controls.Add(this.btnOpenShift);
+            this.panelOpenShift.Controls.Add(this.lblSaldoAwal);
+            this.panelOpenShift.Controls.Add(this.label25);
+            this.panelOpenShift.Controls.Add(this.label23);
+            this.panelOpenShift.Location = new System.Drawing.Point(107, 125);
+            this.panelOpenShift.Name = "panelOpenShift";
+            this.panelOpenShift.Size = new System.Drawing.Size(493, 239);
+            this.panelOpenShift.TabIndex = 37;
+            this.panelOpenShift.Visible = false;
             // 
             // POS_sales
             // 
@@ -549,7 +662,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SteelBlue;
             this.ClientSize = new System.Drawing.Size(1008, 730);
-            this.Controls.Add(this.label22);
+            this.Controls.Add(this.panelOpenShift);
+            this.Controls.Add(this.labelKeteranganBawah);
             this.Controls.Add(this.panelBayar);
             this.Controls.Add(this.dgvListBarang);
             this.Controls.Add(this.lblSatuan);
@@ -581,6 +695,8 @@
             this.panelBayar.ResumeLayout(false);
             this.panelBayar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panelOpenShift.ResumeLayout(false);
+            this.panelOpenShift.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -629,6 +745,14 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label labelKeteranganBawah;
+        private System.Windows.Forms.Label lblCekHarga;
+        private System.Windows.Forms.Timer timer2;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label lblSaldoAwal;
+        private System.Windows.Forms.Button btnOpenShift;
+        private System.Windows.Forms.Button btnBatalOpenShift;
+        private System.Windows.Forms.Panel panelOpenShift;
     }
 }

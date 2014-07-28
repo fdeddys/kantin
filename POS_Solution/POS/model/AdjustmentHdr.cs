@@ -16,6 +16,7 @@ namespace POS.model
         public int idAdjusmentHdr { get; set; }
 
         //ADyyMM9999
+        [MaxLength(11)]
         public string noAdjusment { get; set; }
 
         [MaxLength(100)]

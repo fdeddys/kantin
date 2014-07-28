@@ -14,10 +14,39 @@ namespace POS.model
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int IdParameter { get; set; }
-        [MaxLength(3) ]
-        public string KodeGudangMasuk { get; set; }
 
+
+        [Column("idLokasi_GudangMasuk")]
+        public int idLokasiGudangMasuk { get; set; }
+        
         // automatic isi qty = 1 saat penjualan kasir 
-        public bool autoQtySales { get; set; } 
+        public bool autoQtySales { get; set; }
+
+        [MaxLength(2)]
+        public string pesan { get; set; }
+
+        [MaxLength(2)]
+        public string terima { get; set; }
+
+        [MaxLength(2)]
+        public string returPenerimaan { get; set; }
+
+        [MaxLength(2)]
+        public string penyesuaian { get; set; }
+
+        [MaxLength(2)]
+        public string mutasi { get; set; }
+
+        [MaxLength(2)]
+        public string penjualan { get; set; }
+
+        [MaxLength(2)]
+        public string pembayaran { get; set; }
+
+        public string stokAwal { get; set; }
+
+        public double saldoAwalKasir { get; set; }
+
+        //PO, TR, RR, AJ, MS, IV, FT, AW
     }
 }

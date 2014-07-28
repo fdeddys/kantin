@@ -92,22 +92,73 @@ namespace POS.form.PosKasir
                                select k).FirstOrDefault();
                 if (kasir != null)
                 {
-                    loginValid = true;
+                    string hasil = Enkripsi(txtPassword.Text.Trim(), txtUserId.Text.ToString().Length);
+                    if (hasil == kasir.Password && kasir.Aktif == true)
+                    {
+                        loginValid = true;
+                    }                    
                 }
                 else
                 {
-                    MessageBox.Show("User not found", "kasir is null", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    //MessageBox.Show("User not found", "kasir is null", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
             if (loginValid) {
+                txtUserId.Focus();
                 Func.VarGlobal.UserNameLogin = kasir.NamaKasir;
+                Func.VarGlobal.namaLokasi = lblPOS.Text;
                 Func.VarGlobal.idKasir = kasir.KasirID;
                 Func.VarGlobal.idLokasi = lokasi.LokasiID;
                 POS_sales PosSales = new POS_sales();
                 PosSales.Show();
+                txtUserId.Text = "";
+                txtPassword.Text = "";
+                
                 //this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("User name / password tidak ditemukan atau user tidak aktif !! ", "invalid User", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             
         }
+    
+        private string Enkripsi(string cText , Int32 nPjg )
+        {
+            string  Output, Inputan ;
+            Int32 Panjang_Input ;
+            Byte i ;
+
+            Output = "";            
+            Inputan = cText;
+            Panjang_Input = cText.Length ;
+
+            Int32 hasil;
+            byte[] asciiBytes = Encoding.ASCII.GetBytes(cText);
+            foreach (byte b in asciiBytes)
+            {
+                //txtUserId.Text = txtUserId.Text + " " + b;
+                hasil = Int32.Parse( b.ToString()) + 30 - nPjg;
+                //txtPassword.Text = txtPassword.Text + " " + (char)(hasil);
+                Output = Output + (Char)(hasil);
+            }
+            //for (i=1; i <= Panjang_Input;i++)
+            //{
+            //    Enkrip = Inputan.Substring(i-1, 1);
+            //    txtUserId.Text = txtUserId.Text + "  " + Convert.ToInt32(Enkrip).ToString("X");
+                    
+            //        //(int.Parse(Enkrip)).ToString("X");
+
+            //    Enkrip = (int.Parse(Enkrip) + 30 - nPjg ).ToString() ;
+            //    //txtUserId.Text = txtUserId.Text + "  " + Enkrip;
+            //    //txtUserId.Text = txtUserId.Text + "  " + Convert.ToChar(int.Parse(Enkrip));
+            //    //Enkrip = (Enkrip + 30) - nPjg ;
+            //    //Enkrip = ((Char)Enkrip) ;
+            //    //Output = Output + (char)(Enkrip).ToString();
+            //}
+            //MessageBox.Show(Output, "a");                             
+            return Output ;
+        }
+     
     }
 }

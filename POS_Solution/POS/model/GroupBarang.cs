@@ -13,18 +13,19 @@ namespace POS.model
     {
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-        public int idGroup { get; set; }
+        public int GroupBarangID { get; set; }
         
         [MaxLength(50)]
         public string namaGroup { get; set; }
 
-        public int BarangID { get; set; }
-        public virtual List<Barang> Barang { get; set; }
+        //public int BarangID { get; set; }
+        //public virtual List<Barang> Barang { get; set; }
 
-        public GroupBarang()
-        {
-            this.Barang = new List<Barang>();
-        }
+        //public GroupBarang()
+        //{
+        //    this.Barang = new List<Barang>();
+        //}
 
+        public bool hapus { get; set; }
     }
 }

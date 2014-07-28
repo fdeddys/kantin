@@ -37,5 +37,7 @@ namespace POS.model
 
         public DateTime lastUpdate { get; set; }
 
+        public bool hapus { get; set; }
+
     }
 }

@@ -20,20 +20,45 @@ namespace POS.form.PosKasir
         private Kasir kasir = null;
         private Lokasi lokasi = null;
         private Double jumlahBelanja = 0;
-        private bool editQtyMode = false;
+        //private bool editQtyMode = false;
+        private Int32 idDetilYangDiEdit = 0;
+        private bool cekHargaMode = false;
+        private string headerPenjualan;
+        private double saldoAwalKasir = 0;
+        private bool kasirSudahOpenShift = false;
 
+        private void KondisiAwal()
+        {
+            barang = null;            
+            penjualanHdr = null;
+            Double jumlahBelanja = 0;
+            //editQtyMode = false;
+            LblGrandTotal.Text = "0";
+            dgvListBarang.DataSource = null;
+            TxtCari.Text = "";
+            TxtJumlah.Text = "";
+            LblNamaBarang.Text = "[ ]";
+            lblSatuan.Text = "";
+            lblHarga.Text = "0";
+            LblNoFaktur.Text = "";
+            cekHargaMode = false;
+            txtJumlahBayar.Text = "";
+            labelKeteranganBawah.Visible = false;
+        }
+        
         public POS_sales()
         {
             InitializeComponent();
             using (var context = new PosContext())
             {
-                
-                
+                                
                 Parameter parameter = (from p in context.ParameterContext
                                   select p).FirstOrDefault();
                 if (parameter != null)
                 {
                     autoSalesQty = parameter.autoQtySales;
+                    headerPenjualan = parameter.penjualan.Trim();
+                    saldoAwalKasir = parameter.saldoAwalKasir;
                 }
                 
                 kasir = (from k in context.KasirContext
@@ -44,6 +69,14 @@ namespace POS.form.PosKasir
                           where l.LokasiID == Func.VarGlobal.idLokasi
                           select l).FirstOrDefault();
 
+                if (isOpenShift().Equals(false))
+                {
+                    kasirSudahOpenShift = false;
+                }
+                else
+                {
+                    kasirSudahOpenShift = true ;
+                }
             };
             konfigDatagrid();
             //previewGrid();
@@ -59,8 +92,10 @@ namespace POS.form.PosKasir
         private void POS_sales_Load(object sender, EventArgs e)
         {
             lblUser.Text = Func.VarGlobal.UserNameLogin;
+            lblPOS.Text = Func.VarGlobal.namaLokasi;
             //setHeaderGrid();
             //this.TopMost = true;
+            KondisiAwal();
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -79,96 +114,124 @@ namespace POS.form.PosKasir
                 }
                 else
                 {
-                    string cari = TxtCari.Text.Trim();
-                    Barcode barcode;
 
-                    PosContext context = new PosContext();
+                    if (kasirSudahOpenShift.Equals(false))
+                    {
+                        MessageBox.Show("Anda belum open shift, silahkan tekan F12", "not open shift", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        string cari = TxtCari.Text.Trim();
+                        Barcode barcode;
 
-                    //using (var context = new PosContext() )
-                    //{
-                        var barcode1 = (from b in context.BarcodeContext
-                                   where b.barcodeIsi == cari
-                                   select b).FirstOrDefault();
-                        barcode = barcode1;
-                    //}
+                        PosContext context = new PosContext();
 
-                        if (barcode == null)
-                        {
-                            MessageBox.Show("not ketemu");
-                        }
-                        else
-                        {
-                            barang = new Barang();
-                            barang = barcode.Barang;
-                            if (autoSalesQty)
+                        //using (var context = new PosContext() )
+                        //{
+                            var barcode1 = (from b in context.BarcodeContext
+                                       where b.barcodeIsi == cari
+                                       select b).FirstOrDefault();
+                            barcode = barcode1;
+                        //}
+
+                            if (barcode == null)
                             {
-                                if (penjualanHdr == null)
-                                {
-                                    LblNoFaktur.Text = generateNoFaktur(DateTime.Now);
-                                    penjualanHdr = new PenjualanHdr();
-                                    penjualanHdr.isBayar = false;
-                                    penjualanHdr.KasirID = kasir.KasirID;
-                                    penjualanHdr.lastUpdate = DateTime.Now;
-                                    penjualanHdr.LokasiID = lokasi.LokasiID;
-                                    penjualanHdr.noFaktur = LblNoFaktur.Text.Trim();
-                                    penjualanHdr.batal = false;
-                                    penjualanHdr.tanggalJual = DateTime.Now;
-                                    penjualanHdr.totalBelanja = 0;                                    
-                                    //using (var context = new PosContext())
-                                    //{
-                                    context.PenjualanHdrContext.Add(penjualanHdr);
-                                    context.SaveChanges();
-                                    //}
-                                    jumlahBelanja = 0;
-
-                                }
-
-                                // save penjualan dtl
-                                PenjualanDtl penjualanDtl = new PenjualanDtl();
-                                penjualanDtl.BarangID = barang.BarangID;
-                                penjualanDtl.harga = barang.hargaJual;
-                                penjualanDtl.jumlah = 1;
-                                penjualanDtl.PenjualanHdrID = penjualanHdr.PenjualanHdrID;
-                                //using (var context = new PosContext())
-                                //{
-                                context.PenjualanDtlContext.Add(penjualanDtl);
-                                context.SaveChanges();
-
-                                jumlahBelanja = jumlahBelanja + (barang.hargaJual);
-                                //}
-
-                                // update total belanja di HDR
-                                //penjualanHdr.PenjualanDtl.Add(penjualanDtl);
-                                //penjualanHdr.totalBelanja = penjualanHdr.totalBelanja + (barang.hargaJual);
-                                //using (var context = new PosContext())
-                                //{                                
-
-                                PenjualanHdr updatePenjualanHdr = context.PenjualanHdrContext.Single(p=>p.PenjualanHdrID== penjualanHdr.PenjualanHdrID);
-                                updatePenjualanHdr.totalBelanja = jumlahBelanja;
-                                //updatePenjualanHdr.totalBelanja = updatePenjualanHdr.totalBelanja + (barang.hargaJual);
-                                context.SaveChanges();
-                                //context.Entry(penjualanHdr).State = System.Data.Entity.EntityState.Modified;
-                                //context.SaveChanges();
-                                //}
-                                
-                                //LblGrandTotal.Text = " Rp. " + updatePenjualanHdr.totalBelanja.ToString("#,###");
-                                LblGrandTotal.Text = " Rp. " + jumlahBelanja.ToString("#,###");
-
-                                // kosongkan text cari
-                                barang = null;
-                                TxtCari.Text = "";
-                                previewGrid();
+                                MessageBox.Show("not ketemu");
+                                TxtCari.SelectAll();
                             }
                             else
                             {
-                                LblNamaBarang.Text = "[ " + barang.namaBarang.Trim() + " ]";
-                                lblHarga.Text = " Rp. " + barang.hargaJual.ToString("#,###");
-                                lblSatuan.Text = barang.SatuanKecil.NamaSatuan.Trim();
-                                TxtJumlah.Focus();
+                                barang = new Barang();
+                                barang = barcode.Barang;
+                                if (cekHargaMode == true)
+                                {
+                                    LblNamaBarang.Text = "[ " + barang.namaBarang.Trim() + " ]";
+                                    lblHarga.Text = " Rp. " + barang.hargaJual.ToString("#,###");
+                                    lblSatuan.Text = barang.SatuanKecil.NamaSatuan.Trim();
+                                    TxtCari.SelectAll();
+                                }
+                                else
+                                {
+                                    if (autoSalesQty)
+                                    {
+                                                                
+                                        if (penjualanHdr == null)
+                                        {
+                                            LblNoFaktur.Text = generateNoFaktur(DateTime.Now);
+                                            penjualanHdr = new PenjualanHdr();
+                                            penjualanHdr.isBayar = false;
+                                            penjualanHdr.KasirID = kasir.KasirID;
+                                            penjualanHdr.lastUpdate = DateTime.Now;
+                                            penjualanHdr.LokasiID = lokasi.LokasiID;
+                                            penjualanHdr.noFaktur = LblNoFaktur.Text.Trim();
+                                            penjualanHdr.batal = false;
+                                            penjualanHdr.tanggalJual = DateTime.Now;
+                                            penjualanHdr.totalBelanja = 0;                                    
+                                            //using (var context = new PosContext())
+                                            //{
+                                            context.PenjualanHdrContext.Add(penjualanHdr);
+                                            context.SaveChanges();
+                                            //}
+                                            jumlahBelanja = 0;
+
+                                        }
+
+                                        // save penjualan dtl
+                                        PenjualanDtl penjualanDtl = new PenjualanDtl();
+                                        penjualanDtl.BarangID = barang.BarangID;
+                                        penjualanDtl.harga = barang.hargaJual;
+                                        penjualanDtl.jumlah = 1;
+                                        penjualanDtl.PenjualanHdrID = penjualanHdr.PenjualanHdrID;
+                                        //using (var context = new PosContext())
+                                        //{
+                                        context.PenjualanDtlContext.Add(penjualanDtl);
+                                        context.SaveChanges();
+
+                                        jumlahBelanja = jumlahBelanja + (barang.hargaJual);
+                                        //}
+
+                                        // update total belanja di HDR
+                                        //penjualanHdr.PenjualanDtl.Add(penjualanDtl);
+                                        //penjualanHdr.totalBelanja = penjualanHdr.totalBelanja + (barang.hargaJual);
+                                        //using (var context = new PosContext())
+                                        //{                                
+
+                                        PenjualanHdr updatePenjualanHdr = context.PenjualanHdrContext.Single(p=>p.PenjualanHdrID== penjualanHdr.PenjualanHdrID);
+                                        updatePenjualanHdr.totalBelanja = jumlahBelanja;
+                                        //updatePenjualanHdr.totalBelanja = updatePenjualanHdr.totalBelanja + (barang.hargaJual);
+                                        context.SaveChanges();
+                                        //context.Entry(penjualanHdr).State = System.Data.Entity.EntityState.Modified;
+                                        //context.SaveChanges();
+                                        //}
+                                
+                                        //LblGrandTotal.Text = " Rp. " + updatePenjualanHdr.totalBelanja.ToString("#,###");
+                                        LblGrandTotal.Text = " Rp. " + jumlahBelanja.ToString("#,###");
+
+
+                                        LblNamaBarang.Text = "[ " + barang.namaBarang.Trim() + " ]";
+                                        lblHarga.Text = " Rp. " + barang.hargaJual.ToString("#,###");
+                                        lblSatuan.Text = barang.SatuanKecil.NamaSatuan.Trim();
+
+                                        // kosongkan text cari
+                                        barang = null;
+                                        TxtCari.Text = "";
+                                        previewGrid();
+                                    }
+                                    else
+                                    {
+                                        LblNamaBarang.Text = "[ " + barang.namaBarang.Trim() + " ]";
+                                        lblHarga.Text = " Rp. " + barang.hargaJual.ToString("#,###");
+                                        lblSatuan.Text = barang.SatuanKecil.NamaSatuan.Trim();
+                                        TxtJumlah.Focus();
+                                    }
+                                }
+                                
                             }
-                        }
-                    //}// End context
-                }                                                
+                        //}// End context
+                    }
+                    }
+                    
+                                                                    
             }
         }
 
@@ -180,8 +243,7 @@ namespace POS.form.PosKasir
                 // cek qty is valid
                 // cek apakah id penjualan sudah ada, jika iya langsung nambah di detil, jika tidak create header
                 // refresh grid
-                bool isBarangValid = false;
-                bool isQtyValid = false;
+               
                 double jumlah =0;
 
                 if (barang == null)
@@ -190,27 +252,56 @@ namespace POS.form.PosKasir
                 }
                 else
                 {
-                    isBarangValid = true;
-                }
+                    if (double.TryParse(TxtJumlah.Text, out jumlah))
+                    {                    
+                        if (jumlah > 1000)
+                        {
+                            MessageBox.Show("Barang tidak boleh lebih dari 1000 pcs", "Jumlah > 1000", MessageBoxButtons.OK);
+                            TxtJumlah.SelectAll();
+                        }
+                        else
+                        {
+                            if (autoSalesQty)
+                            {
+                                // edit
+                                using (var context = new PosContext())
+                                {
+                                    double totalEdit = 0;
+                                    double totalBelanja = 0;
 
-                if (double.TryParse(TxtJumlah.Text, out jumlah))
-                {
-                    
-                    if (jumlah > 1000)
-                    {
-                        MessageBox.Show("Barang tidak boleh lebih dari 1000 pcs", "Jumlah > 1000", MessageBoxButtons.OK);
-                        TxtJumlah.SelectAll();
+                                    PenjualanDtl penjualanDtlEdit = context.PenjualanDtlContext.Single(p => p.penjualanDtlID == idDetilYangDiEdit);
+                                    totalEdit = penjualanDtlEdit.jumlah * penjualanDtlEdit.harga;
+                                    totalBelanja = Int32.Parse(TxtJumlah.Text) * penjualanDtlEdit.harga;
+                                    penjualanDtlEdit.jumlah = Int32.Parse(TxtJumlah.Text);
+                                    context.SaveChanges();
+                                    
+                                    PenjualanHdr penjualanHdrEdit = context.PenjualanHdrContext.Single(p => p.PenjualanHdrID == penjualanHdr.PenjualanHdrID);
+                                    penjualanHdrEdit.totalBelanja = penjualanHdrEdit.totalBelanja - totalEdit + totalBelanja;
+                                    context.SaveChanges();
+
+                                    jumlahBelanja = jumlahBelanja - totalEdit + totalBelanja;
+                                    
+                                }
+                                LblGrandTotal.Text = " Rp. " + jumlahBelanja.ToString("#,###");
+                                previewGrid();
+                                TxtCari.Focus();
+                                TxtJumlah.Enabled = false;
+                                //editQtyMode = false;
+                            }
+                            else
+                            {
+                                // add
+                            }
+                        }
                     }
                     else
                     {
-                        isQtyValid = true;
+                        MessageBox.Show("Qty bukan angka", "Error parse", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        TxtJumlah.SelectAll();
                     }
                 }
-                else
-                {
-                    MessageBox.Show("Qty bukan angka", "Error parse", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    TxtJumlah.SelectAll();
-                }
+
+                
 
             };
             if (e.KeyChar == (char)Keys.Escape)
@@ -236,13 +327,13 @@ namespace POS.form.PosKasir
                                              select p).FirstOrDefault();
                 if (penjualanHdr == null)
                 {
-                    hasil = "F" +  DateTime.Now.ToString("yyMM") + "00001";
+                    hasil = headerPenjualan +  DateTime.Now.ToString("yyMM") + "00001";
                 }
                 else
                 {
                     string noFakturTerakhir = penjualanHdr.noFaktur.Substring(5,5);
                     Int32 noFakturTerakhirInt = Int32.Parse( noFakturTerakhir) +1;
-                    hasil = "F" + DateTime.Now.ToString("yyMM") + ("0000" + noFakturTerakhirInt).Right(5);
+                    hasil = headerPenjualan + DateTime.Now.ToString("yyMM") + ("0000" + noFakturTerakhirInt).Right(5);
                 }                
             }
             return hasil;
@@ -317,39 +408,146 @@ namespace POS.form.PosKasir
 
         private void TxtCari_KeyUp(object sender, KeyEventArgs e)
         {
+
+            if (e.KeyData == Keys.F1)
+            {
+                using (var form = new FormHelpBarang())
+                {
+                    var hasilForm = form.ShowDialog();
+                    if (hasilForm == DialogResult.OK)
+                    {
+                        TxtCari.Text = form.hasil;
+                    }
+                }                
+                
+            };
+            
             // F2 - Pembayaran Barang 
+            //      cek apakah data detil pembayaran ada ??
             //      tampilkan panel Bayar
             if(e.KeyData == Keys.F2)
-            {                
-                using (var context = new PosContext())
+            {
+                if (dgvListBarang.RowCount == 0)
                 {
-                    PenjualanHdr cari = (from h in context.PenjualanHdrContext
-                                                 where h.PenjualanHdrID == penjualanHdr.PenjualanHdrID
-                                                 select h).FirstOrDefault();
-                    if (cari == null)
-                    {
-                        MessageBox.Show("Tidak ada data untuk pembayaran", "Penjualan null");
-                    }
-                    else
-                    {
-                        jumlahBelanja = cari.totalBelanja;
-                    }
+                    MessageBox.Show("Data penjualan tidak ada !!!", "grid null", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
-                panelBayar.Visible = true;
-                panelBayar.Height = 313;
-                panelBayar.Width = 559;
-                lblBayarTotalBelanja.Text = jumlahBelanja.ToString("#,###");
-                lblBayarTotalKembali.Text = "";                
-                txtJumlahBayar.Focus();
+                else
+                {
+                    using (var context = new PosContext())
+                    {
+                        PenjualanHdr cari = (from h in context.PenjualanHdrContext
+                                                     where h.PenjualanHdrID == penjualanHdr.PenjualanHdrID
+                                                     select h).FirstOrDefault();
+                        if (cari == null)
+                        {
+                            MessageBox.Show("Tidak ada data untuk pembayaran", "Penjualan null");
+                        }
+                        else
+                        {
+                            jumlahBelanja = cari.totalBelanja;
+                        }
+                    }
+                    panelBayar.Visible = true;
+                    panelBayar.Height = 313;
+                    panelBayar.Width = 559;
+                    lblBayarTotalBelanja.Text = jumlahBelanja.ToString("#,###");
+                    lblBayarTotalKembali.Text = "";
+                    txtJumlahBayar.Text = "";
+                    txtJumlahBayar.Focus();
+                }
+
+                
             };
+
+
+            // F3 - Cek Harga Mode
+            if (e.KeyCode == Keys.F3) 
+            {
+                if (cekHargaMode == false)
+                {
+                    cekHargaMode = true;
+                    timer2.Enabled = true;
+                }
+                else
+                {
+                    cekHargaMode = false;
+                    timer2.Enabled = false;
+                    lblCekHarga.Visible = false;
+                }
+            }
+
 
             // F4 - Ubah qty, hapus  
             //      focus pindah ke grid
             if (e.KeyCode == Keys.F4)
             {
-                dgvListBarang.Focus();
+                if (dgvListBarang.RowCount == 0)
+                {
+                    MessageBox.Show("Data penjualan tidak ada !!!", "grid null", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    dgvListBarang.Focus();                        
+                }
+                
+            };
+
+            // F9 - logout
+            //      cek dulu apakah ada transaksi di grid, jika ada confirm
+            if (e.KeyCode == Keys.F9)
+            {
+                if (dgvListBarang.RowCount > 0)
+                {
+                    MessageBox.Show("Masih ada transaksi, tidak boleh logout !! ", "Grid not null", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    this.Close();
+                }
+            }
+
+            // F12 - Open Shift
+            //       cek apakah sudah open shift?
+            if (e.KeyCode == Keys.F12)
+            {                                   
+                //kasir belum login
+                if ( isOpenShift().Equals(false))
+                {
+                    lblSaldoAwal.Text = saldoAwalKasir.ToString("#,###");
+                    panelOpenShift.Visible = true;
+                    btnOpenShift.Focus();    
+                }
+                else
+                {
+                    MessageBox.Show("Anda sudah open shift ", "open shift ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                
             };
         }
+        
+
+        private bool isOpenShift()
+        {
+            bool sudahOpen = false;
+
+            PosContext context = new PosContext();
+
+            string tglHariIni = DateTime.Now.ToString("yyyy-MM-dd");
+            KasirLogin kasirLogin = (from k in context.KasirLoginContext
+                                     where k.TglTransaksi == tglHariIni
+                                     && k.KasirID == Func.VarGlobal.idKasir
+                                     select k).FirstOrDefault();
+            if (kasirLogin == null)
+            {
+                sudahOpen = false;
+            }
+            else
+            {
+                sudahOpen = true;
+            }
+            return sudahOpen;
+        }
+
 
         private void txtJumlahBayar_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -377,10 +575,12 @@ namespace POS.form.PosKasir
                             updatePenjualanHdr.totalBelanja = jumlahBelanja;
                             updatePenjualanHdr.jumlahBayar = jumlahBayar;
                             context.SaveChanges();                                     
-                        }                
+                        }
+                        dgvListBarang.DataSource = null;
                         penjualanHdr = null;
                         TxtCari.Focus();
                         panelBayar.Visible = false;
+                        KondisiAwal();
                     }
                     else
                     {
@@ -434,11 +634,13 @@ namespace POS.form.PosKasir
             //   1. Ubah Detil Penjualan, set BATAL = true
             //   2. update Hdr Penjualan, Total belanja dikurang jumlah pembatalan
             //   3. update tampilan  -> grid dan label total
+
+            Int32 idDetil = Int32.Parse(dgvListBarang.SelectedCells[6].Value.ToString()); 
+
             if (e.KeyData == Keys.Delete)
             {
                 string hasil = dgvListBarang.SelectedCells[1].Value.ToString(); 
-                Int32 idDetil= Int32.Parse(dgvListBarang.SelectedCells[6].Value.ToString()); 
-
+                
                 DialogResult hasilDialog;
                 hasilDialog = MessageBox.Show("Apakah anda yakin akan menghapus data [ " + hasil + " ]", "Confirm", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
 
@@ -470,6 +672,7 @@ namespace POS.form.PosKasir
             // fokus ke kode/barcode
             if (e.KeyData == Keys.Escape)
             {
+                
                 TxtCari.Focus();                
             }
 
@@ -484,10 +687,10 @@ namespace POS.form.PosKasir
             if (e.KeyChar == (char)Keys.Space)
             {
                 Int32 idDetilPenjualan = Int32.Parse( dgvListBarang.SelectedCells[6].Value.ToString() );
-
+                idDetilYangDiEdit = idDetilPenjualan;
                 PosContext context = new PosContext();
 
-                editQtyMode = true;
+                //editQtyMode = true;
                 barang = new Barang();
                 PenjualanDtl jualDetil = context.PenjualanDtlContext.Single(p=>p.penjualanDtlID == idDetilPenjualan) ;
                 TxtJumlah.Text = jualDetil.jumlah.ToString();
@@ -499,6 +702,58 @@ namespace POS.form.PosKasir
                 TxtJumlah.SelectAll();
                 TxtJumlah.Focus();
             };
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            if (cekHargaMode == true)
+            {
+                lblCekHarga.Visible = !lblCekHarga.Visible;
+            }
+
+        }
+
+        private void btnBatalOpenShift_Click(object sender, EventArgs e)
+        {
+            TxtCari.Focus();
+            panelOpenShift.Visible = false;
+        }
+
+        private void btnOpenShift_Click(object sender, EventArgs e)
+        {
+
+            using (var context = new PosContext())
+            {
+                KasirLogin kasirLogin = new KasirLogin();
+                kasirLogin.KasirID = Func.VarGlobal.idKasir;
+                kasirLogin.OpenShift = true;
+                kasirLogin.SaldoAwal = saldoAwalKasir;
+                kasirLogin.TglTransaksi = DateTime.Now.ToString("yyyy-MM-dd");
+                kasirLogin.WaktuOpenShift = DateTime.Now;
+                context.KasirLoginContext.Add(kasirLogin);
+                context.SaveChanges();
+                kasirSudahOpenShift = true;
+            };
+            btnBatalOpenShift_Click(sender,e);
+        }
+
+        private void dgvListBarang_Click(object sender, EventArgs e)
+        {
+            if (dgvListBarang.ColumnCount <= 0)
+            {
+                TxtCari.Focus();
+            }
+            
+        }
+
+        private void dgvListBarang_Enter(object sender, EventArgs e)
+        {
+            labelKeteranganBawah.Visible = true;
+        }
+
+        private void dgvListBarang_Leave(object sender, EventArgs e)
+        {
+            labelKeteranganBawah.Visible = false;
         }
 
     }

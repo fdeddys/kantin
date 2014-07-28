@@ -73,7 +73,7 @@ namespace POS.form.master
             {
                 // isi combo group
                 var groupBarangs = (from c in context.GroupBarangContext
-                                    select new {c.idGroup , c.namaGroup } ).ToList();                
+                                    select new {idGroup = c.GroupBarangID , c.namaGroup } ).ToList();                
                 cmbGroup.DataSource = groupBarangs;
                 cmbGroup.DisplayMember = "namaGroup";
                 cmbGroup.ValueMember = "idGroup";
@@ -91,7 +91,7 @@ namespace POS.form.master
 
                 // isi merk
                 var merks = from m in context.MerkContext
-                            select new { m.IdMerk, m.namaMerk };
+                            select new { IdMerk = m.MerkID, m.namaMerk };
                 cmbMerk.DataSource = merks.ToList();
                 cmbMerk.DisplayMember = "namaMerk";
                 cmbMerk.ValueMember = "IdMerk";
@@ -160,7 +160,7 @@ namespace POS.form.master
                 // ambil id combo group [selected]
                 Int32 idGroupBarang = Int32.Parse(cmbGroup.SelectedValue.ToString());
                 GroupBarang groupbarang = (from g in context.GroupBarangContext
-                                          where g.idGroup == idGroupBarang
+                                          where g.GroupBarangID == idGroupBarang
                                           select g).FirstOrDefault();
 
                 // ambil id satuan [selected]
@@ -178,7 +178,7 @@ namespace POS.form.master
                 // ambil id merk
                 Int32 idMerk = Int32.Parse(cmbMerk.SelectedValue.ToString());
                 Merk merk = (from m in context.MerkContext
-                             where m.IdMerk == idMerk
+                             where m.MerkID == idMerk
                              select m ).FirstOrDefault() ;
 
                 Barang barang;

@@ -24,6 +24,7 @@ namespace POS.model
         //{
         //    this.Barangs = new List<Barang>();
         //}
+        public bool hapus { get; set; }
 
     }
 }

@@ -17,6 +17,7 @@ namespace POS.model
         public virtual Supplier supplier { get; set; }
 
         //TRyyMM9999
+        [MaxLength(11)]
         public string noTerima { get; set; }
 
         public DateTime tglTerima{ get; set; }
