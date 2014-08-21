@@ -13,7 +13,7 @@ namespace POS.model
     {
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-        public int idSupplier { get; set; }
+        public int SupplierID { get; set; }        
 
         [MaxLength(100)]
         public string namaSupplier { get; set; }

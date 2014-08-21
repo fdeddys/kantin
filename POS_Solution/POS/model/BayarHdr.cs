@@ -34,7 +34,8 @@ namespace POS.model
 
         public double pembulatan { get; set; }
 
-        public int idSupplier { get; set; }
+        public int SupplierID { get; set; }
+      
         public virtual Supplier Supplier { get; set; } 
 
     }

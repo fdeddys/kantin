@@ -3,7 +3,7 @@ namespace POS.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class all : DbMigration
+    public partial class update_all : DbMigration
     {
         public override void Up()
         {
@@ -34,6 +34,8 @@ namespace POS.Migrations
                         approve = c.Boolean(nullable: false),
                         userUpdate = c.String(),
                         lastUpdate = c.DateTime(nullable: false),
+                        tanggal = c.DateTime(nullable: false),
+                        hapus = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.idAdjusmentHdr)
                 .ForeignKey("dbo.tbl_lokasi", t => t.LokasiID, cascadeDelete: true)
@@ -45,6 +47,10 @@ namespace POS.Migrations
                     {
                         LokasiID = c.Int(nullable: false, identity: true),
                         NamaLokasi = c.String(maxLength: 50),
+                        hapus = c.Boolean(nullable: false),
+                        namaStore = c.String(maxLength: 30),
+                        alamat1 = c.String(maxLength: 50),
+                        alamat2 = c.String(maxLength: 50),
                     })
                 .PrimaryKey(t => t.LokasiID);
             
@@ -67,6 +73,7 @@ namespace POS.Migrations
                         hapus = c.Boolean(nullable: false),
                         hargaBeli = c.Double(nullable: false),
                         stockAkhir = c.Int(nullable: false),
+                        hargaDasar = c.Double(nullable: false),
                         SatuanBesar_IdSatuan = c.Int(),
                         SatuanKecil_IdSatuan = c.Int(),
                     })
@@ -157,6 +164,140 @@ namespace POS.Migrations
                 .Index(t => t.MerkID)
                 .Index(t => t.SatuanBesar_IdSatuan)
                 .Index(t => t.SatuanKecil_IdSatuan);
+            
+            CreateTable(
+                "dbo.tb_bayar_dtl",
+                c => new
+                    {
+                        BayarDtlID = c.Int(nullable: false, identity: true),
+                        noRek = c.String(maxLength: 50),
+                        subTotal = c.Double(nullable: false),
+                        BayarHdrID = c.Int(nullable: false),
+                        JenisBayarID = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.BayarDtlID)
+                .ForeignKey("dbo.tb_bayar_hd", t => t.BayarHdrID, cascadeDelete: true)
+                .ForeignKey("dbo.tb_jnsBayar", t => t.JenisBayarID, cascadeDelete: true)
+                .Index(t => t.BayarHdrID)
+                .Index(t => t.JenisBayarID);
+            
+            CreateTable(
+                "dbo.tb_bayar_hd",
+                c => new
+                    {
+                        BayarHdrID = c.Int(nullable: false, identity: true),
+                        userUpdate = c.String(maxLength: 20),
+                        lastUpdate = c.DateTime(nullable: false),
+                        approved = c.Boolean(nullable: false),
+                        hapus = c.Boolean(nullable: false),
+                        tanggal = c.DateTime(nullable: false),
+                        total_tagihan = c.Double(nullable: false),
+                        total_bayar = c.Double(nullable: false),
+                        pembulatan = c.Double(nullable: false),
+                        SupplierID = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.BayarHdrID)
+                .ForeignKey("dbo.tb_supplier", t => t.SupplierID, cascadeDelete: true)
+                .Index(t => t.SupplierID);
+            
+            CreateTable(
+                "dbo.tb_supplier",
+                c => new
+                    {
+                        SupplierID = c.Int(nullable: false, identity: true),
+                        namaSupplier = c.String(maxLength: 100),
+                        alamat = c.String(maxLength: 300),
+                        kota = c.String(maxLength: 50),
+                        telp = c.String(maxLength: 30),
+                        fax = c.String(maxLength: 30),
+                        cPerson = c.String(maxLength: 50),
+                        userUpdate = c.String(),
+                        lastUpdate = c.DateTime(nullable: false),
+                        hapus = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.SupplierID);
+            
+            CreateTable(
+                "dbo.tb_jnsBayar",
+                c => new
+                    {
+                        JenisBayarID = c.Int(nullable: false, identity: true),
+                        namaJenisBayar = c.String(maxLength: 50),
+                        userUpdate = c.String(maxLength: 20),
+                        lastUpdate = c.DateTime(nullable: false),
+                        hapus = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.JenisBayarID);
+            
+            CreateTable(
+                "dbo.tb_bayar_tagihan",
+                c => new
+                    {
+                        BayarTagihanID = c.Int(nullable: false, identity: true),
+                        grandTotal = c.Double(nullable: false),
+                        BayarHdrID = c.Int(nullable: false),
+                        TerimaHdrID = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.BayarTagihanID)
+                .ForeignKey("dbo.tb_bayar_hd", t => t.BayarHdrID, cascadeDelete: true)
+                .ForeignKey("dbo.tb_terima_hd", t => t.TerimaHdrID, cascadeDelete: true)
+                .Index(t => t.BayarHdrID)
+                .Index(t => t.TerimaHdrID);
+            
+            CreateTable(
+                "dbo.tb_terima_hd",
+                c => new
+                    {
+                        idTerimaHdr = c.Int(nullable: false, identity: true),
+                        idSupplier = c.Int(nullable: false),
+                        noTerima = c.String(maxLength: 11),
+                        tglTerima = c.DateTime(nullable: false),
+                        tempo = c.Int(nullable: false),
+                        catatan = c.String(),
+                        noFaktur = c.String(),
+                        total = c.Double(nullable: false),
+                        isPpn = c.Boolean(nullable: false),
+                        discGlobal = c.Double(nullable: false),
+                        approve = c.Boolean(nullable: false),
+                        isTarikPembayaran = c.Boolean(nullable: false),
+                        userUpdate = c.String(),
+                        lastUpdate = c.DateTime(nullable: false),
+                        tglTempo = c.DateTime(nullable: false),
+                        tglFaktur = c.DateTime(nullable: false),
+                        discTotal = c.Double(nullable: false),
+                        ppnTotal = c.Double(nullable: false),
+                        biayaLain = c.Double(nullable: false),
+                        grandTotal = c.Double(nullable: false),
+                        hapus = c.Boolean(nullable: false),
+                        JenisFakturID = c.Int(nullable: false),
+                        JenisPpnID = c.Int(nullable: false),
+                        supplier_SupplierID = c.Int(),
+                    })
+                .PrimaryKey(t => t.idTerimaHdr)
+                .ForeignKey("dbo.tb_jnsFaktur", t => t.JenisFakturID, cascadeDelete: true)
+                .ForeignKey("dbo.tb_jnsPpn", t => t.JenisPpnID, cascadeDelete: true)
+                .ForeignKey("dbo.tb_supplier", t => t.supplier_SupplierID)
+                .Index(t => t.JenisFakturID)
+                .Index(t => t.JenisPpnID)
+                .Index(t => t.supplier_SupplierID);
+            
+            CreateTable(
+                "dbo.tb_jnsFaktur",
+                c => new
+                    {
+                        idJnsFaktur = c.Int(nullable: false, identity: true),
+                        namaJenisFaktur = c.String(maxLength: 50),
+                    })
+                .PrimaryKey(t => t.idJnsFaktur);
+            
+            CreateTable(
+                "dbo.tb_jnsPpn",
+                c => new
+                    {
+                        idJnsPpn = c.Int(nullable: false, identity: true),
+                        namaJenisPpn = c.String(maxLength: 50),
+                    })
+                .PrimaryKey(t => t.idJnsPpn);
             
             CreateTable(
                 "dbo.tb_DaftarMenu",
@@ -282,6 +423,7 @@ namespace POS.Migrations
                         userUpdate = c.String(),
                         lastUpdate = c.DateTime(nullable: false),
                         noMutasi = c.String(maxLength: 11),
+                        hapus = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.idMutasiHdr);
             
@@ -301,6 +443,9 @@ namespace POS.Migrations
                         pembayaran = c.String(maxLength: 2),
                         stokAwal = c.String(),
                         saldoAwalKasir = c.Double(nullable: false),
+                        footer1 = c.String(maxLength: 45),
+                        footer2 = c.String(maxLength: 45),
+                        footer3 = c.String(maxLength: 45),
                     })
                 .PrimaryKey(t => t.IdParameter);
             
@@ -347,18 +492,18 @@ namespace POS.Migrations
                 c => new
                     {
                         idPesanDtl = c.Int(nullable: false, identity: true),
+                        idPesanHdr = c.Int(nullable: false),
                         BarangID = c.Int(nullable: false),
                         jumlah = c.Double(nullable: false),
                         isTerima = c.Boolean(nullable: false),
-                        pesanHdr_idPesanHdr = c.Int(),
                         satuan_IdSatuan = c.Int(),
                     })
                 .PrimaryKey(t => t.idPesanDtl)
                 .ForeignKey("dbo.tb_barang", t => t.BarangID, cascadeDelete: true)
-                .ForeignKey("dbo.tb_pesan_hd", t => t.pesanHdr_idPesanHdr)
+                .ForeignKey("dbo.tb_pesan_hd", t => t.idPesanHdr, cascadeDelete: true)
                 .ForeignKey("dbo.tb_satuan", t => t.satuan_IdSatuan)
+                .Index(t => t.idPesanHdr)
                 .Index(t => t.BarangID)
-                .Index(t => t.pesanHdr_idPesanHdr)
                 .Index(t => t.satuan_IdSatuan);
             
             CreateTable(
@@ -366,6 +511,7 @@ namespace POS.Migrations
                 c => new
                     {
                         idPesanHdr = c.Int(nullable: false, identity: true),
+                        idSupplier = c.Int(nullable: false),
                         tglPesan = c.DateTime(nullable: false),
                         tempo = c.Int(nullable: false),
                         catatan = c.String(),
@@ -373,28 +519,11 @@ namespace POS.Migrations
                         userUpdate = c.String(),
                         lastUpdate = c.DateTime(nullable: false),
                         noPO = c.String(maxLength: 11),
-                        supplier_idSupplier = c.Int(),
+                        supplier_SupplierID = c.Int(),
                     })
                 .PrimaryKey(t => t.idPesanHdr)
-                .ForeignKey("dbo.tb_supplier", t => t.supplier_idSupplier)
-                .Index(t => t.supplier_idSupplier);
-            
-            CreateTable(
-                "dbo.tb_supplier",
-                c => new
-                    {
-                        idSupplier = c.Int(nullable: false, identity: true),
-                        namaSupplier = c.String(maxLength: 100),
-                        alamat = c.String(maxLength: 300),
-                        kota = c.String(maxLength: 50),
-                        telp = c.String(maxLength: 30),
-                        fax = c.String(maxLength: 30),
-                        cPerson = c.String(maxLength: 50),
-                        userUpdate = c.String(),
-                        lastUpdate = c.DateTime(nullable: false),
-                        hapus = c.Boolean(nullable: false),
-                    })
-                .PrimaryKey(t => t.idSupplier);
+                .ForeignKey("dbo.tb_supplier", t => t.supplier_SupplierID)
+                .Index(t => t.supplier_SupplierID);
             
             CreateTable(
                 "dbo.tb_stock",
@@ -416,40 +545,28 @@ namespace POS.Migrations
                 c => new
                     {
                         idTerimaDtl = c.Int(nullable: false, identity: true),
+                        TerimaHdrID = c.Int(nullable: false),
+                        pesanDtlID = c.Int(nullable: false),
                         jumlah = c.Double(nullable: false),
                         disc1 = c.Double(nullable: false),
                         disc2 = c.Double(nullable: false),
+                        barangID = c.Int(nullable: false),
+                        hargaDasar = c.Double(nullable: false),
+                        disc1_pr = c.Double(nullable: false),
+                        ppn = c.Double(nullable: false),
+                        disc2_pr = c.Double(nullable: false),
+                        hargaBeli = c.Double(nullable: false),
+                        sub_total = c.Double(nullable: false),
+                        konversiSatuan = c.Int(nullable: false),
                         pesanDtl_idPesanDtl = c.Int(),
-                        terimaHdr_idTerimaHdr = c.Int(),
                     })
                 .PrimaryKey(t => t.idTerimaDtl)
+                .ForeignKey("dbo.tb_barang", t => t.barangID, cascadeDelete: true)
                 .ForeignKey("dbo.tb_pesan_dtl", t => t.pesanDtl_idPesanDtl)
-                .ForeignKey("dbo.tb_terima_hd", t => t.terimaHdr_idTerimaHdr)
-                .Index(t => t.pesanDtl_idPesanDtl)
-                .Index(t => t.terimaHdr_idTerimaHdr);
-            
-            CreateTable(
-                "dbo.tb_terima_hd",
-                c => new
-                    {
-                        idTerimaHdr = c.Int(nullable: false, identity: true),
-                        noTerima = c.String(maxLength: 11),
-                        tglTerima = c.DateTime(nullable: false),
-                        tempo = c.Int(nullable: false),
-                        catatan = c.String(),
-                        noFaktur = c.String(),
-                        total = c.Double(nullable: false),
-                        isPpn = c.Boolean(nullable: false),
-                        discGlobal = c.Double(nullable: false),
-                        approve = c.Boolean(nullable: false),
-                        isTarikPembayaran = c.Boolean(nullable: false),
-                        userUpdate = c.String(),
-                        lastUpdate = c.DateTime(nullable: false),
-                        supplier_idSupplier = c.Int(),
-                    })
-                .PrimaryKey(t => t.idTerimaHdr)
-                .ForeignKey("dbo.tb_supplier", t => t.supplier_idSupplier)
-                .Index(t => t.supplier_idSupplier);
+                .ForeignKey("dbo.tb_terima_hd", t => t.TerimaHdrID, cascadeDelete: true)
+                .Index(t => t.TerimaHdrID)
+                .Index(t => t.barangID)
+                .Index(t => t.pesanDtl_idPesanDtl);
             
             CreateTable(
                 "dbo.tb_UserAksesMenu",
@@ -471,14 +588,14 @@ namespace POS.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.tb_terima_dtl", "terimaHdr_idTerimaHdr", "dbo.tb_terima_hd");
-            DropForeignKey("dbo.tb_terima_hd", "supplier_idSupplier", "dbo.tb_supplier");
+            DropForeignKey("dbo.tb_terima_dtl", "TerimaHdrID", "dbo.tb_terima_hd");
             DropForeignKey("dbo.tb_terima_dtl", "pesanDtl_idPesanDtl", "dbo.tb_pesan_dtl");
+            DropForeignKey("dbo.tb_terima_dtl", "barangID", "dbo.tb_barang");
             DropForeignKey("dbo.tb_stock", "lokasiID", "dbo.tbl_lokasi");
             DropForeignKey("dbo.tb_stock", "BarangID", "dbo.tb_barang");
             DropForeignKey("dbo.tb_pesan_dtl", "satuan_IdSatuan", "dbo.tb_satuan");
-            DropForeignKey("dbo.tb_pesan_dtl", "pesanHdr_idPesanHdr", "dbo.tb_pesan_hd");
-            DropForeignKey("dbo.tb_pesan_hd", "supplier_idSupplier", "dbo.tb_supplier");
+            DropForeignKey("dbo.tb_pesan_dtl", "idPesanHdr", "dbo.tb_pesan_hd");
+            DropForeignKey("dbo.tb_pesan_hd", "supplier_SupplierID", "dbo.tb_supplier");
             DropForeignKey("dbo.tb_pesan_dtl", "BarangID", "dbo.tb_barang");
             DropForeignKey("dbo.tb_penjualanDtl", "PenjualanHdrID", "dbo.tb_penjualanHd");
             DropForeignKey("dbo.tb_penjualanHd", "LokasiID", "dbo.tbl_lokasi");
@@ -489,6 +606,14 @@ namespace POS.Migrations
             DropForeignKey("dbo.tb_kasirLogin", "KasirID", "dbo.tb_user");
             DropForeignKey("dbo.tb_kartu_stock", "LokasiID", "dbo.tbl_lokasi");
             DropForeignKey("dbo.tb_kartu_stock", "BarangID", "dbo.tb_barang");
+            DropForeignKey("dbo.tb_bayar_tagihan", "TerimaHdrID", "dbo.tb_terima_hd");
+            DropForeignKey("dbo.tb_terima_hd", "supplier_SupplierID", "dbo.tb_supplier");
+            DropForeignKey("dbo.tb_terima_hd", "JenisPpnID", "dbo.tb_jnsPpn");
+            DropForeignKey("dbo.tb_terima_hd", "JenisFakturID", "dbo.tb_jnsFaktur");
+            DropForeignKey("dbo.tb_bayar_tagihan", "BayarHdrID", "dbo.tb_bayar_hd");
+            DropForeignKey("dbo.tb_bayar_dtl", "JenisBayarID", "dbo.tb_jnsBayar");
+            DropForeignKey("dbo.tb_bayar_dtl", "BayarHdrID", "dbo.tb_bayar_hd");
+            DropForeignKey("dbo.tb_bayar_hd", "SupplierID", "dbo.tb_supplier");
             DropForeignKey("dbo.tb_barang_history", "SatuanKecil_IdSatuan", "dbo.tb_satuan");
             DropForeignKey("dbo.tb_barang_history", "SatuanBesar_IdSatuan", "dbo.tb_satuan");
             DropForeignKey("dbo.tb_barang_history", "MerkID", "dbo.tb_Merk");
@@ -502,15 +627,15 @@ namespace POS.Migrations
             DropForeignKey("dbo.tb_barcode", "BarangID", "dbo.tb_barang");
             DropForeignKey("dbo.tb_adjustment_dtl", "adjustmentHdr_idAdjusmentHdr", "dbo.tb_adjustment_hd");
             DropForeignKey("dbo.tb_adjustment_hd", "LokasiID", "dbo.tbl_lokasi");
-            DropIndex("dbo.tb_terima_hd", new[] { "supplier_idSupplier" });
-            DropIndex("dbo.tb_terima_dtl", new[] { "terimaHdr_idTerimaHdr" });
             DropIndex("dbo.tb_terima_dtl", new[] { "pesanDtl_idPesanDtl" });
+            DropIndex("dbo.tb_terima_dtl", new[] { "barangID" });
+            DropIndex("dbo.tb_terima_dtl", new[] { "TerimaHdrID" });
             DropIndex("dbo.tb_stock", new[] { "BarangID" });
             DropIndex("dbo.tb_stock", new[] { "lokasiID" });
-            DropIndex("dbo.tb_pesan_hd", new[] { "supplier_idSupplier" });
+            DropIndex("dbo.tb_pesan_hd", new[] { "supplier_SupplierID" });
             DropIndex("dbo.tb_pesan_dtl", new[] { "satuan_IdSatuan" });
-            DropIndex("dbo.tb_pesan_dtl", new[] { "pesanHdr_idPesanHdr" });
             DropIndex("dbo.tb_pesan_dtl", new[] { "BarangID" });
+            DropIndex("dbo.tb_pesan_dtl", new[] { "idPesanHdr" });
             DropIndex("dbo.tb_penjualanHd", new[] { "LokasiID" });
             DropIndex("dbo.tb_penjualanHd", new[] { "KasirID" });
             DropIndex("dbo.tb_penjualanDtl", new[] { "BarangID" });
@@ -520,6 +645,14 @@ namespace POS.Migrations
             DropIndex("dbo.tb_kasirLogin", new[] { "KasirID" });
             DropIndex("dbo.tb_kartu_stock", new[] { "LokasiID" });
             DropIndex("dbo.tb_kartu_stock", new[] { "BarangID" });
+            DropIndex("dbo.tb_terima_hd", new[] { "supplier_SupplierID" });
+            DropIndex("dbo.tb_terima_hd", new[] { "JenisPpnID" });
+            DropIndex("dbo.tb_terima_hd", new[] { "JenisFakturID" });
+            DropIndex("dbo.tb_bayar_tagihan", new[] { "TerimaHdrID" });
+            DropIndex("dbo.tb_bayar_tagihan", new[] { "BayarHdrID" });
+            DropIndex("dbo.tb_bayar_hd", new[] { "SupplierID" });
+            DropIndex("dbo.tb_bayar_dtl", new[] { "JenisBayarID" });
+            DropIndex("dbo.tb_bayar_dtl", new[] { "BayarHdrID" });
             DropIndex("dbo.tb_barang_history", new[] { "SatuanKecil_IdSatuan" });
             DropIndex("dbo.tb_barang_history", new[] { "SatuanBesar_IdSatuan" });
             DropIndex("dbo.tb_barang_history", new[] { "MerkID" });
@@ -534,10 +667,8 @@ namespace POS.Migrations
             DropIndex("dbo.tb_adjustment_dtl", new[] { "adjustmentHdr_idAdjusmentHdr" });
             DropIndex("dbo.tb_adjustment_dtl", new[] { "BarangID" });
             DropTable("dbo.tb_UserAksesMenu");
-            DropTable("dbo.tb_terima_hd");
             DropTable("dbo.tb_terima_dtl");
             DropTable("dbo.tb_stock");
-            DropTable("dbo.tb_supplier");
             DropTable("dbo.tb_pesan_hd");
             DropTable("dbo.tb_pesan_dtl");
             DropTable("dbo.tb_penjualanHd");
@@ -552,6 +683,14 @@ namespace POS.Migrations
             DropTable("dbo.tb_user");
             DropTable("dbo.tb_kartu_stock");
             DropTable("dbo.tb_DaftarMenu");
+            DropTable("dbo.tb_jnsPpn");
+            DropTable("dbo.tb_jnsFaktur");
+            DropTable("dbo.tb_terima_hd");
+            DropTable("dbo.tb_bayar_tagihan");
+            DropTable("dbo.tb_jnsBayar");
+            DropTable("dbo.tb_supplier");
+            DropTable("dbo.tb_bayar_hd");
+            DropTable("dbo.tb_bayar_dtl");
             DropTable("dbo.tb_barang_history");
             DropTable("dbo.tb_satuan");
             DropTable("dbo.tb_Merk");

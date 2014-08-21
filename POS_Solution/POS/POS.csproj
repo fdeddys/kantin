@@ -148,49 +148,9 @@
     <Compile Include="Func\IniFile.cs" />
     <Compile Include="Func\RawPrinterHelper.cs" />
     <Compile Include="Func\VarGlobal.cs" />
-    <Compile Include="Migrations\201408170808574_tbbayar1.cs" />
-    <Compile Include="Migrations\201408170808574_tbbayar1.Designer.cs">
-      <DependentUpon>201408170808574_tbbayar1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201408170809334_aaaaa.cs" />
-    <Compile Include="Migrations\201408170809334_aaaaa.Designer.cs">
-      <DependentUpon>201408170809334_aaaaa.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201408170810214_tbbyrSupp.cs" />
-    <Compile Include="Migrations\201408170810214_tbbyrSupp.Designer.cs">
-      <DependentUpon>201408170810214_tbbyrSupp.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201408170815107_bayarDtl.cs" />
-    <Compile Include="Migrations\201408170815107_bayarDtl.Designer.cs">
-      <DependentUpon>201408170815107_bayarDtl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201408170818453_jenisBayar.cs" />
-    <Compile Include="Migrations\201408170818453_jenisBayar.Designer.cs">
-      <DependentUpon>201408170818453_jenisBayar.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201408170820304_addBayarDtlBayarHdr.cs" />
-    <Compile Include="Migrations\201408170820304_addBayarDtlBayarHdr.Designer.cs">
-      <DependentUpon>201408170820304_addBayarDtlBayarHdr.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201408170823123_bayarDtlJenisBayar.cs" />
-    <Compile Include="Migrations\201408170823123_bayarDtlJenisBayar.Designer.cs">
-      <DependentUpon>201408170823123_bayarDtlJenisBayar.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201408170826250_bayarTagihan.cs" />
-    <Compile Include="Migrations\201408170826250_bayarTagihan.Designer.cs">
-      <DependentUpon>201408170826250_bayarTagihan.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201408170827455_bayarTagihanBayarHdr.cs" />
-    <Compile Include="Migrations\201408170827455_bayarTagihanBayarHdr.Designer.cs">
-      <DependentUpon>201408170827455_bayarTagihanBayarHdr.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201408170851015_uuyu.cs" />
-    <Compile Include="Migrations\201408170851015_uuyu.Designer.cs">
-      <DependentUpon>201408170851015_uuyu.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201408170855352_te.cs" />
-    <Compile Include="Migrations\201408170855352_te.Designer.cs">
-      <DependentUpon>201408170855352_te.cs</DependentUpon>
+    <Compile Include="Migrations\201408210335488_update_all.cs" />
+    <Compile Include="Migrations\201408210335488_update_all.Designer.cs">
+      <DependentUpon>201408210335488_update_all.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="model\AdjustmentHdr.cs" />
@@ -259,38 +219,8 @@
     <EmbeddedResource Include="form\PosKasir\POS_sales.resx">
       <DependentUpon>POS_sales.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201408170808574_tbbayar1.resx">
-      <DependentUpon>201408170808574_tbbayar1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201408170809334_aaaaa.resx">
-      <DependentUpon>201408170809334_aaaaa.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201408170810214_tbbyrSupp.resx">
-      <DependentUpon>201408170810214_tbbyrSupp.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201408170815107_bayarDtl.resx">
-      <DependentUpon>201408170815107_bayarDtl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201408170818453_jenisBayar.resx">
-      <DependentUpon>201408170818453_jenisBayar.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201408170820304_addBayarDtlBayarHdr.resx">
-      <DependentUpon>201408170820304_addBayarDtlBayarHdr.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201408170823123_bayarDtlJenisBayar.resx">
-      <DependentUpon>201408170823123_bayarDtlJenisBayar.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201408170826250_bayarTagihan.resx">
-      <DependentUpon>201408170826250_bayarTagihan.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201408170827455_bayarTagihanBayarHdr.resx">
-      <DependentUpon>201408170827455_bayarTagihanBayarHdr.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201408170851015_uuyu.resx">
-      <DependentUpon>201408170851015_uuyu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201408170855352_te.resx">
-      <DependentUpon>201408170855352_te.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201408210335488_update_all.resx">
+      <DependentUpon>201408210335488_update_all.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

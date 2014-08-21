@@ -7,13 +7,13 @@ namespace POS.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.1-30610")]
-    public sealed partial class bayarDtl : IMigrationMetadata
+    public sealed partial class update_all : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(bayarDtl));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(update_all));
         
         string IMigrationMetadata.Id
         {
-            get { return "201408170815107_bayarDtl"; }
+            get { return "201408210335488_update_all"; }
         }
         
         string IMigrationMetadata.Source
