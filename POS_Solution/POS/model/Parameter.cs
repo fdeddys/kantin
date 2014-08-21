@@ -48,5 +48,15 @@ namespace POS.model
         public double saldoAwalKasir { get; set; }
 
         //PO, TR, RR, AJ, MS, IV, FT, AW
+
+        [MaxLength(45)]
+        public string footer1 { get; set; }
+
+        [MaxLength(45)]
+        public string footer2 { get; set; }
+
+        [MaxLength(45)]
+        public string footer3 { get; set; }
+
     }
 }

@@ -13,7 +13,7 @@ namespace POS.form.PosKasir
 {
     public partial class FormHelpBarang : Form
     {
-        int jumlahItem = 5;
+        int jumlahItem =0;
         int halamanSekarang = 1;
         int jumlahMaxHalaman = 0;
         public string hasil;
@@ -25,36 +25,30 @@ namespace POS.form.PosKasir
 
         private void FormHelpBarang_Load(object sender, EventArgs e)
         {
+            jumlahItem = 16;
+            halamanSekarang = 1;
             PreviewGrid();
         }
 
         private void PreviewGrid()
         {
 
-            //dGVBarang.AllowDrop = false;
-            //dGVBarang.AllowUserToAddRows = false;
-            //dGVBarang.AllowUserToDeleteRows = false;
-            //dGVBarang.AllowUserToResizeRows = false;
-            //dGVBarang.RowHeadersVisible = false;
-            //dGVBarang.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            //dGVBarang.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            //dGVBarang.RowTemplate.DefaultCellStyle.SelectionBackColor = Color.LightYellow;
-            //dGVBarang.RowTemplate.DefaultCellStyle.SelectionForeColor = Color.IndianRed;
-            //dGVBarang.ForeColor = Color.Navy;
-            //dGVBarang.BackgroundColor = Color.WhiteSmoke;
+            dGVBarang.AllowDrop = false;
+            dGVBarang.AllowUserToAddRows = false;
+            dGVBarang.AllowUserToDeleteRows = false;
+            dGVBarang.AllowUserToResizeRows = false;
+            dGVBarang.RowHeadersVisible = false;
+            dGVBarang.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dGVBarang.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dGVBarang.RowTemplate.DefaultCellStyle.SelectionBackColor = Color.LightYellow;
+            dGVBarang.RowTemplate.DefaultCellStyle.SelectionForeColor = Color.IndianRed;
+            dGVBarang.ForeColor = Color.Navy;
+            dGVBarang.BackgroundColor = Color.WhiteSmoke;
 
-            showPage();           
+            showPage();
 
-             //Header
-            dGVBarang.Columns[0].HeaderText = "Kode";
-            dGVBarang.Columns[1].HeaderText = "Nama";
-            dGVBarang.Columns[2].HeaderText = "Satuan";
-            dGVBarang.Columns[3].HeaderText = "Isi";
-
-             //Width
-            dGVBarang.Columns[0].Width = 50;
-            dGVBarang.Columns[2].Width = 100;
-            dGVBarang.Columns[3].Width = 30;
+            
+             
         }
 
         private void showPage()
@@ -63,11 +57,19 @@ namespace POS.form.PosKasir
             using (var context = new PosContext())
             {
                 string cari = txtCariBarang.Text.Trim();
-                var ListBarang = (from b in context.BarangContext
-                                  where b.namaBarang.Contains("b")
-                                  select new { b.BarangID, b.namaBarang, b.SatuanKecil.NamaSatuan, b.isi })
+
+                var ListBarang = context.BarangContext                    
+                    .Where(b => b.namaBarang.Contains(cari))
+                    .Where(b=>b.hapus==false)
+                    .Select(b => new { b.kodeBarang, b.namaBarang, b.hargaJual, b.isi })
+                    .OrderBy(b => b.namaBarang);                    
+                    
+
+                //var ListBarang = (from b in context.BarangContext
+                //                  where b.namaBarang.Contains("b")
+                //                  select new { b.BarangID, b.namaBarang, b.SatuanKecil.NamaSatuan, b.isi })
                                   //.Where(b=>b.namaBarang.Contains("buku"))
-                                  .OrderBy(b => b.namaBarang);
+                //                  .OrderBy(b => b.namaBarang);
                                   //.Skip(halamanSekarang * jumlahItem)
                                   //.Take(jumlahItem);
 
@@ -78,10 +80,30 @@ namespace POS.form.PosKasir
                 //                .Take(jumlahItem);
 
 
-                jumlahMaxHalaman = ListBarang.Count();                
-
-                dGVBarang.DataSource = ListBarang.ToList();
+                double jumlahRec = ListBarang.Count();
                 
+                jumlahMaxHalaman = Int32.Parse(( Math.Ceiling( jumlahRec/jumlahItem )).ToString());
+
+                dGVBarang.DataSource = ListBarang
+                    .Skip((halamanSekarang-1) * jumlahItem)
+                    .Take(jumlahItem)
+                    .ToList()
+                    ;
+
+                if (dGVBarang.RowCount > 0)
+                {
+                    //Header
+                    dGVBarang.Columns[0].HeaderText = "Kode";
+                    dGVBarang.Columns[1].HeaderText = "Nama";
+                    dGVBarang.Columns[2].HeaderText = "Satuan";
+                    dGVBarang.Columns[3].HeaderText = "Isi";
+
+                    //     Width
+                    dGVBarang.Columns[0].Width = 50;
+                    dGVBarang.Columns[2].Width = 100;
+                    dGVBarang.Columns[3].Width = 30;
+                }
+
             }
         }
 
@@ -114,23 +136,16 @@ namespace POS.form.PosKasir
 
         }
 
-
         private void btnNext_Click(object sender, EventArgs e)
         {
             nextPage();
         }
         
-
         private void btnPrev_Click(object sender, EventArgs e)
         {
             prevPage();
         }
-
-        private void btnFirst_Click(object sender, EventArgs e)
-        {
-            firstPage();
-        }
-
+        
         private void btnLast_Click(object sender, EventArgs e)
         {
             lastPage();
@@ -190,7 +205,7 @@ namespace POS.form.PosKasir
         {
             halamanSekarang = jumlahMaxHalaman;
             showPage();
-        }
+        } 
 
         private void txtCariBarang_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -198,7 +213,7 @@ namespace POS.form.PosKasir
             {
                 if (dGVBarang.RowCount > 0)
                 {
-                    this.hasil = dGVBarang.Rows[0].ToString();
+                    this.hasil = dGVBarang.CurrentCell.Value.ToString();// .FirstDisplayedCell.ToString();
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
@@ -209,6 +224,11 @@ namespace POS.form.PosKasir
         private void txtCariBarang_TextChanged(object sender, EventArgs e)
         {
             showPage();            
+        }
+
+        private void btnHalPertama_Click(object sender, EventArgs e)
+        {
+            firstPage();
         }
 
 

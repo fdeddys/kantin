@@ -179,7 +179,11 @@ namespace POS.form.master
                 Int32 idMerk = Int32.Parse(cmbMerk.SelectedValue.ToString());
                 Merk merk = (from m in context.MerkContext
                              where m.MerkID == idMerk
-                             select m ).FirstOrDefault() ;
+                             select m ).FirstOrDefault();
+
+                Lokasi lokasi = (from l in context.LokasiContext
+                                    where l.LokasiID== 1
+                                    select l).FirstOrDefault();
 
                 Barang barang;
                 Int32 kodeCari;
@@ -219,8 +223,16 @@ namespace POS.form.master
                 txtKode.Text = ("0000000" + barang.BarangID.ToString().Trim()).Right(7);
                 barang.kodeBarang = txtKode.Text.Trim();
                 context.BarangContext.Find(barang.BarangID);
-                context.SaveChanges();
+                
 
+                Stock stock = new Stock();
+                stock.Barang = barang;
+                stock.Lokasi = lokasi;
+                stock.Jumlah = 1000;
+                context.StockContext.Add(stock);
+
+
+                context.SaveChanges();
 
                 btnKondisiAwal(true);
 

@@ -13,8 +13,10 @@ namespace POS.model
     {
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        [Column("idPesanDtl")]
         public int idPesanDtl { get; set; }
 
+        public int idPesanHdr { get; set; }
         public virtual PesanHdr pesanHdr { get; set; }
 
         public int BarangID { get; set; }

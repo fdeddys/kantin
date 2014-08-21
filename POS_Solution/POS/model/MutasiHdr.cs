@@ -32,5 +32,7 @@ namespace POS.model
         [MaxLength(11)]
         public string noMutasi { get; set; }
 
+        public bool hapus { get; set; }
+
     }
 }

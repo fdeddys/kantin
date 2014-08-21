@@ -60,6 +60,7 @@ namespace POS.model
 
         public int stockAkhir { get; set; }
 
+        public double hargaDasar { get; set; }
 
     }
 }

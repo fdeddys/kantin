@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -29,6 +30,10 @@ namespace POS.form.PosKasir
                 //MessageBox.Show(pathExe);
                 IniFile iniFile = new IniFile(pathExe +  "setting.ini");                
                 string hasil = iniFile.IniReadValue("config","lokasi");
+                Func.VarGlobal.NamaPrinter = iniFile.IniReadValue("config", "namaPrinter");
+                Func.VarGlobal.isPosSwalayan = byte.Parse( iniFile.IniReadValue("config", "posSwalayan"));
+                Func.VarGlobal.isPosRestaurant = byte.Parse(iniFile.IniReadValue("config", "posRestaurant"));
+
                 if (hasil != "")
                 {
                     lblPOS.Text = hasil;
@@ -42,6 +47,10 @@ namespace POS.form.PosKasir
                         if (lokasi != null)
                         {
                             lblPOS.Text = lokasi.NamaLokasi.Trim();
+                            Func.VarGlobal.Header1 = lokasi.namaStore.Trim();
+                            Func.VarGlobal.Header2 = lokasi.alamat1.Trim();
+                            Func.VarGlobal.Header3 = lokasi.alamat2.Trim();
+                            
                         }
                     };
                 }                
@@ -103,14 +112,33 @@ namespace POS.form.PosKasir
                     //MessageBox.Show("User not found", "kasir is null", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
+
+            //loginValid = true;
+
             if (loginValid) {
                 txtUserId.Focus();
                 Func.VarGlobal.UserNameLogin = kasir.NamaKasir;
                 Func.VarGlobal.namaLokasi = lblPOS.Text;
                 Func.VarGlobal.idKasir = kasir.KasirID;
                 Func.VarGlobal.idLokasi = lokasi.LokasiID;
-                POS_sales PosSales = new POS_sales();
-                PosSales.Show();
+
+                if (Func.VarGlobal.isPosSwalayan == 1)
+                {
+                    POS_sales PosSales = new POS_sales();
+                    PosSales.Show();
+                }
+                else
+                {
+                    if (Func.VarGlobal.isPosRestaurant == 1)
+                    {
+                        POS_Restaurant posRestaurant = new POS_Restaurant();
+                        posRestaurant.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Kesalahan setting file config, silahkan hubungi admin !!! ", "Error setting.ini", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }                    
+                }                
                 txtUserId.Text = "";
                 txtPassword.Text = "";
                 
@@ -118,7 +146,8 @@ namespace POS.form.PosKasir
             }
             else
             {
-                MessageBox.Show("User name / password tidak ditemukan atau user tidak aktif !! ", "invalid User", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("User name atau password tidak ditemukan atau user tidak aktif !! ", "User is null", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                txtUserId.Focus();
             }
             
         }
@@ -127,8 +156,7 @@ namespace POS.form.PosKasir
         {
             string  Output, Inputan ;
             Int32 Panjang_Input ;
-            Byte i ;
-
+          
             Output = "";            
             Inputan = cText;
             Panjang_Input = cText.Length ;
@@ -159,6 +187,22 @@ namespace POS.form.PosKasir
             //MessageBox.Show(Output, "a");                             
             return Output ;
         }
+
+        private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                if (txtUserId.Text.Equals(""))
+                {
+                    txtUserId.Focus();
+                }
+                else
+                {
+                    btnLogin_Click(sender, e);
+                };
+
+            };
+        }        
      
     }
 }

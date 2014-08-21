@@ -24,3 +24,5 @@ E:\code\kantin Charitas\kantin\POS_Solution\POS\obj\Release\POS.pdb
 E:\code\kantin Charitas\kantin\POS_Solution\POS\obj\Release\POS.form.PosKasir.FormHelpBarang.resources
 E:\code\kantin Charitas\kantin\POS_Solution\POS\obj\Release\POS.csprojResolveAssemblyReference.cache
 E:\code\kantin Charitas\kantin\POS_Solution\POS\obj\Release\POS.Migrations.all.resources
+E:\code\kantin Charitas\kantin\POS_Solution\POS\obj\Release\POS.Migrations.tblLokasi.resources
+E:\code\kantin Charitas\kantin\POS_Solution\POS\obj\Release\POS.Migrations.addFooter.resources

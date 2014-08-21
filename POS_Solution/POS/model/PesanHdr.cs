@@ -15,6 +15,7 @@ namespace POS.model
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int idPesanHdr { get; set; }
 
+        public int idSupplier { get; set; }
         public virtual Supplier supplier { get; set; }
 
         public DateTime tglPesan { get; set; }

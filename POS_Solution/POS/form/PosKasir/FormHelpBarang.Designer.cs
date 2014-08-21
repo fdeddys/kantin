@@ -31,11 +31,11 @@
             this.dGVBarang = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.txtCariBarang = new System.Windows.Forms.TextBox();
-            this.btnFirst = new System.Windows.Forms.Button();
             this.btnPrev = new System.Windows.Forms.Button();
             this.btnNext = new System.Windows.Forms.Button();
             this.btnLast = new System.Windows.Forms.Button();
             this.labelKeteranganBawah = new System.Windows.Forms.Label();
+            this.btnHalPertama = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dGVBarang)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,7 +52,7 @@
             this.dGVBarang.Name = "dGVBarang";
             this.dGVBarang.ReadOnly = true;
             this.dGVBarang.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dGVBarang.Size = new System.Drawing.Size(828, 390);
+            this.dGVBarang.Size = new System.Drawing.Size(828, 381);
             this.dGVBarang.TabIndex = 1;
             this.dGVBarang.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dGVBarang_KeyDown);
             this.dGVBarang.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dGVBarang_KeyUp);
@@ -61,7 +61,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Navy;
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.label1.Location = new System.Drawing.Point(13, 13);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(89, 18);
@@ -79,22 +79,11 @@
             this.txtCariBarang.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCariBarang_KeyPress);
             this.txtCariBarang.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtCariBarang_KeyUp);
             // 
-            // btnFirst
-            // 
-            this.btnFirst.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnFirst.Location = new System.Drawing.Point(41, 461);
-            this.btnFirst.Name = "btnFirst";
-            this.btnFirst.Size = new System.Drawing.Size(196, 44);
-            this.btnFirst.TabIndex = 2;
-            this.btnFirst.Text = "<<";
-            this.btnFirst.UseVisualStyleBackColor = true;
-            this.btnFirst.Click += new System.EventHandler(this.btnFirst_Click);
-            // 
             // btnPrev
             // 
-            this.btnPrev.Location = new System.Drawing.Point(237, 461);
+            this.btnPrev.Location = new System.Drawing.Point(232, 451);
             this.btnPrev.Name = "btnPrev";
-            this.btnPrev.Size = new System.Drawing.Size(196, 44);
+            this.btnPrev.Size = new System.Drawing.Size(200, 59);
             this.btnPrev.TabIndex = 3;
             this.btnPrev.Text = "<";
             this.btnPrev.UseVisualStyleBackColor = true;
@@ -102,9 +91,9 @@
             // 
             // btnNext
             // 
-            this.btnNext.Location = new System.Drawing.Point(433, 461);
+            this.btnNext.Location = new System.Drawing.Point(428, 451);
             this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(196, 44);
+            this.btnNext.Size = new System.Drawing.Size(200, 59);
             this.btnNext.TabIndex = 4;
             this.btnNext.Text = ">";
             this.btnNext.UseVisualStyleBackColor = true;
@@ -112,9 +101,9 @@
             // 
             // btnLast
             // 
-            this.btnLast.Location = new System.Drawing.Point(629, 461);
+            this.btnLast.Location = new System.Drawing.Point(630, 451);
             this.btnLast.Name = "btnLast";
-            this.btnLast.Size = new System.Drawing.Size(196, 44);
+            this.btnLast.Size = new System.Drawing.Size(200, 59);
             this.btnLast.TabIndex = 5;
             this.btnLast.Text = ">>";
             this.btnLast.UseVisualStyleBackColor = true;
@@ -127,23 +116,33 @@
             this.labelKeteranganBawah.ForeColor = System.Drawing.Color.DarkRed;
             this.labelKeteranganBawah.Location = new System.Drawing.Point(-2, 39);
             this.labelKeteranganBawah.Name = "labelKeteranganBawah";
-            this.labelKeteranganBawah.Size = new System.Drawing.Size(852, 20);
+            this.labelKeteranganBawah.Size = new System.Drawing.Size(858, 20);
             this.labelKeteranganBawah.TabIndex = 37;
             this.labelKeteranganBawah.Text = "   ESC  :  Kembali  -  F1  :  Hal pertama  -  F2  :  hal sebelumnya -  F3  :  hal" +
     " selanjutnya  -  F4  :  hal terakhir  -  DOWN  : pilih grid";
+            // 
+            // btnHalPertama
+            // 
+            this.btnHalPertama.Location = new System.Drawing.Point(30, 450);
+            this.btnHalPertama.Name = "btnHalPertama";
+            this.btnHalPertama.Size = new System.Drawing.Size(200, 59);
+            this.btnHalPertama.TabIndex = 38;
+            this.btnHalPertama.Text = "<<";
+            this.btnHalPertama.UseVisualStyleBackColor = true;
+            this.btnHalPertama.Click += new System.EventHandler(this.btnHalPertama_Click);
             // 
             // FormHelpBarang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(854, 515);
             this.ControlBox = false;
+            this.Controls.Add(this.btnHalPertama);
             this.Controls.Add(this.labelKeteranganBawah);
             this.Controls.Add(this.btnLast);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.btnPrev);
-            this.Controls.Add(this.btnFirst);
             this.Controls.Add(this.txtCariBarang);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dGVBarang);
@@ -167,10 +166,10 @@
         private System.Windows.Forms.DataGridView dGVBarang;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtCariBarang;
-        private System.Windows.Forms.Button btnFirst;
         private System.Windows.Forms.Button btnPrev;
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Button btnLast;
         private System.Windows.Forms.Label labelKeteranganBawah;
+        private System.Windows.Forms.Button btnHalPertama;
     }
 }

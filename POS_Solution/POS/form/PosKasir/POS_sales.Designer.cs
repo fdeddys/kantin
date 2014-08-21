@@ -250,7 +250,8 @@
             this.label4.Size = new System.Drawing.Size(1013, 20);
             this.label4.TabIndex = 19;
             this.label4.Text = "   F1 : Cari Barang  -  F2 : Bayar - F3 : Cek Harga  -  F4 :  Ubah Jumlah/hapus  " +
-    "-  F9 : Logout  -  F10 : Print Struk terakhir  -  F12 : Open Shift  ";
+    "-  F8 - Laporan Harian  -  F9 : Logout  -  F10 : Print Struk terakhir  -  F12 : " +
+    "Open Shift  ";
             // 
             // label5
             // 

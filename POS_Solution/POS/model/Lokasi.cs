@@ -18,5 +18,17 @@ namespace POS.model
         [MaxLength(50)]
         public string NamaLokasi { get; set; }
 
+        public bool hapus { get; set; }
+
+        [MaxLength(30)]
+        public string namaStore { get; set; }
+
+        [MaxLength(50)]
+        public string alamat1 { get; set; }
+
+        [MaxLength(50)]
+        public string alamat2 { get; set; }
+
+
     }
 }

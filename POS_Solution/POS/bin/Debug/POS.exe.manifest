@@ -66,24 +66,24 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="POS.exe" size="772608">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="POS.exe" size="709632">
       <assemblyIdentity name="POS" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>5v0slAlCbUgUpRO/nsxBWMb/1/fFpO87T438Y9V50uY=</dsig:DigestValue>
+        <dsig:DigestValue>8ienL/by9lFyw41jKU7vh5Ph0+QKCH4B/0UdK53Nt7w=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="POS.exe.config" size="1113">
+  <file name="POS.exe.config" size="1161">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>hblWnXIj6iVfEmsVtPuDRgd8Eh+80XNj5IlY4IEIhuM=</dsig:DigestValue>
+      <dsig:DigestValue>alFvQtXM1V3vweYIHhoaVmEqCc3YlhbZLLHpElj7sGQ=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Properties\Resources\Shoppingcart-01.ico" size="174205">

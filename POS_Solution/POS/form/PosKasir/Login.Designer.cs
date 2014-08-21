@@ -77,7 +77,7 @@
             this.txtUserId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtUserId.Location = new System.Drawing.Point(115, 186);
             this.txtUserId.Name = "txtUserId";
-            this.txtUserId.Size = new System.Drawing.Size(168, 26);
+            this.txtUserId.Size = new System.Drawing.Size(132, 26);
             this.txtUserId.TabIndex = 7;
             this.txtUserId.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUserId_KeyPress);
             // 
@@ -111,6 +111,7 @@
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(168, 26);
             this.txtPassword.TabIndex = 9;
+            this.txtPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPassword_KeyPress);
             // 
             // label6
             // 

@@ -13,7 +13,10 @@ namespace POS.model
     {
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-        public int idTerimaHdr { get; set; }
+        [Column("idTerimaHdr")]
+        public int TerimaHdrID { get; set; }
+
+        public int idSupplier { get; set; }
         public virtual Supplier supplier { get; set; }
 
         //TRyyMM9999
@@ -41,6 +44,27 @@ namespace POS.model
         public string userUpdate { get; set; }
 
         public DateTime lastUpdate { get; set; }
+
+        public DateTime tglTempo { get; set; }
+
+        public DateTime tglFaktur { get; set; }
+
+        public double discTotal { get; set; }
+
+        public double ppnTotal { get; set; }
+
+        public double biayaLain { get; set; }
+
+        public double grandTotal { get; set; }
+
+        public bool hapus { get; set; }
+
+        public int JenisFakturID { get; set; }
+        public virtual JenisFaktur JenisFaktur { get; set; }
+
+        public int JenisPpnID { get; set; }
+        public virtual JenisPpn JenisPpn { get; set; }
+
 
     }
 }

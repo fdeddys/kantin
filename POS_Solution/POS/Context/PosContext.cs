@@ -17,8 +17,8 @@ namespace POS.Context
 
         static PosContext()
         {
-            Database.SetInitializer<PosContext>(new DropCreateDatabaseIfModelChanges<PosContext>());
-            //CreateDatabaseIfNotExists<PosContext>());
+            //Database.SetInitializer<PosContext>(new DropCreateDatabaseIfModelChanges<PosContext>());
+            Database.SetInitializer<PosContext>(new CreateDatabaseIfNotExists<PosContext>());
         }
 
         public DbSet<Barang> BarangContext { get; set;}
@@ -41,7 +41,7 @@ namespace POS.Context
         public DbSet<AdjustmentHdr> AdjustmentHdrContext { get; set; }
         public DbSet<AdjustmentDtl> AdjustmentDtlContext { get; set; }
         public DbSet<PenjualanHdr> PenjualanHdrContext { get; set; }
-        public DbSet <PenjualanDtl> PenjualanDtlContext { get; set; }
+        public DbSet<PenjualanDtl> PenjualanDtlContext { get; set; }
         public DbSet<KasirLogin> KasirLoginContext { get; set; }
         public DbSet<UserAksesMenu> UserAksesMenuContext { get; set; }
         public DbSet<LastNo> LastNoContext { get; set; }
@@ -49,7 +49,14 @@ namespace POS.Context
         public DbSet<Stock> StockContext { get; set; }
         public DbSet<DaftarMenu> DaftarMenuContext { get; set; }
         public DbSet<BarangHistory> BarangHistoryContext { get; set; }
+        public DbSet<JenisFaktur> JenisFakturContext { get; set; }
+        public DbSet<JenisPpn> JenisPpnContext { get; set; }
+        public DbSet<BayarHdr> BayarHdrContext { get; set; }
+        public DbSet<BayarDtl> BayarDtlContext { get; set; }
+        public DbSet<JenisBayar> JenisBayarContext { get; set; }
+        public DbSet<BayarTagihan> BayarTagihanContext { get; set; }
 
-                
+       
+
     }
 }
